@@ -2,10 +2,8 @@ import { TypedIntro } from './HomepageMotion';
 import { useState } from 'react';
 import { ArrowRight, ChevronDown, Clock, MapPin, TrendingUp, Landmark, Globe } from 'lucide-react';
 
-const DOMICILE_STATES = [
-  'Uttar Pradesh', 'Maharashtra', 'Karnataka', 'Delhi', 'Rajasthan',
-  'Tamil Nadu', 'Gujarat', 'Madhya Pradesh', 'Bihar', 'West Bengal'
-];
+import { domicileOptions as DOMICILE_STATES } from '../data/admissions';
+import { track } from '../data/config';
 
 const Hero = ({ onStartProfile }) => {
   const [scoreOrRank, setScoreOrRank] = useState('');
@@ -13,6 +11,7 @@ const Hero = ({ onStartProfile }) => {
 
   const handleSearch = (e) => {
     e.preventDefault();
+    track('hero_profile_start');
     onStartProfile({ score: scoreOrRank, domicile: domicileState });
     const target = document.getElementById('counselling');
     if (target) target.scrollIntoView({ behavior: 'smooth' });
@@ -44,18 +43,18 @@ const Hero = ({ onStartProfile }) => {
           <div className="hero-copy">
             <div className="inline-flex items-center gap-2 mb-6">
               <span className="text-xs font-bold text-accent tracking-[0.2em] uppercase">
-                MEDICAL ADMISSION • NEET COUNSELLING
+                MBBS ADMISSIONS • NEET COUNSELLING • PAN-INDIA
               </span>
               <div className="w-12 h-px bg-accent/50"></div>
             </div>
 
             <h1 className="hero-title font-bold text-white mb-6">
               Your NEET Rank.<br />
-              <span className="gold-gradient-text font-serif italic">Your Best Possible<br/>Options.</span>
+              <span className="gold-gradient-text font-serif italic">Your Best Possible<br/>MBBS Options.</span>
             </h1>
 
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-10 max-w-lg">
-              Explore realistic medical college options based on your rank, domicile, category and budget.
+              Explore realistic MBBS admission options across India based on your NEET score or AIR, domicile, category, budget and counselling eligibility.
             </p>
 
             <TypedIntro />
@@ -75,7 +74,7 @@ const Hero = ({ onStartProfile }) => {
                       type="text"
                       value={scoreOrRank}
                       onChange={(e) => setScoreOrRank(e.target.value)}
-                      placeholder="Enter NEET Score / AIR"
+                      pattern="(?:[Aa][Ii][Rr] *)?[0-9][0-9, ]*" placeholder="e.g. 487 / AIR 92,340"
                       className="w-full rounded-xl border border-slate-600 bg-slate-900/50 pl-11 pr-4 py-3.5 text-sm sm:text-base text-white placeholder-slate-400 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors"
                     />
                   </div>
@@ -112,40 +111,40 @@ const Hero = ({ onStartProfile }) => {
 
                 <div className="flex items-center justify-center gap-1.5 pt-2 text-xs text-slate-400 font-medium">
                   <Clock className="w-3.5 h-3.5" />
-                  <span>Build your profile in under a minute.</span>
+                  <span>Takes less than 60 seconds.</span>
                 </div>
               </form>
             </div>
           </div>
 
-          {/* Right Side: 45% - Your admission, at a glance Card */}
-          <div className="hero-snapshot relative hidden lg:block">
+          {/* Right Side: 45% - Your Admission Snapshot Card */}
+          <div className="hero-snapshot relative">
             <div className="glass-panel rounded-3xl p-6 xl:p-8 border border-white/10 shadow-2xl relative overflow-hidden">
               {/* Subtle top glow */}
               <div className="absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-50"></div>
               
-              <h3 className="text-xl font-bold text-white mb-1">Your admission, at a glance</h3>
-              <p className="text-sm text-slate-400 mb-8">An illustrative profile. Your options will vary.</p>
+              <h2 className="text-xl font-bold text-white mb-1">Your Admission Snapshot</h2>
+              <p className="text-sm text-slate-400 mb-8">Your NEET profile. Your state options. Your next decision.</p>
               
               <div className="grid grid-cols-3 gap-2 mb-6">
                 <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700/50">
                   <p className="text-xs text-slate-400 mb-1">NEET Score</p>
                   <div className="flex items-end justify-between">
-                    <p className="text-2xl font-bold text-white">487</p>
+                    <p className="text-base font-bold text-white break-words">{scoreOrRank || 'Your score'}</p>
                     <TrendingUp className="w-5 h-5 text-emerald-400 mb-1" />
                   </div>
                 </div>
                 <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700/50">
                   <p className="text-xs text-slate-400 mb-1">Domicile</p>
                   <div className="flex items-end justify-between">
-                    <p className="text-base font-bold text-white leading-tight">Uttar<br/>Pradesh</p>
+                    <p className="text-base font-bold text-white leading-tight">{domicileState || 'Your state'}</p>
                     <MapPin className="w-5 h-5 text-blue-400 mb-1" />
                   </div>
                 </div>
                 <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700/50">
                   <p className="text-xs text-slate-400 mb-1">Budget</p>
                   <div className="flex items-end justify-between">
-                    <p className="text-base font-bold text-white whitespace-nowrap">₹50–70L</p>
+                    <p className="text-base font-bold text-white">Set in profile</p>
                     
                   </div>
                 </div>
@@ -161,7 +160,7 @@ const Hero = ({ onStartProfile }) => {
                     </div>
                     <div>
                       <p className="font-bold text-slate-200 text-sm">Private MBBS</p>
-                      <p className="text-xs text-slate-400 mt-0.5">Good Options Available</p>
+                      <p className="text-xs text-slate-400 mt-0.5">Explore realistic state options</p>
                     </div>
                   </div>
                   <ChevronDown className="w-4 h-4 text-slate-500 -rotate-90 group-hover:text-accent transition-colors" />
@@ -174,14 +173,14 @@ const Hero = ({ onStartProfile }) => {
                     </div>
                     <div>
                       <p className="font-bold text-slate-200 text-sm">Deemed Universities</p>
-                      <p className="text-xs text-slate-400 mt-0.5">Select Colleges</p>
+                      <p className="text-xs text-slate-400 mt-0.5">Compare total cost + cutoff trends</p>
                     </div>
                   </div>
                   <ChevronDown className="w-4 h-4 text-slate-500 -rotate-90 group-hover:text-accent transition-colors" />
                 </div>
               </div>
               
-              <div className="text-center mt-6">
+              <div className="rounded-xl border border-slate-700/50 p-4 text-slate-200"><p className="font-bold text-sm">State / AIQ Counselling</p><p className="text-xs text-slate-400 mt-1">Review eligible routes</p></div><a href="#counselling" className="inline-block text-accent text-sm font-semibold mt-5">Build My Full Profile →</a><div className="text-center mt-6">
                 <p className="font-serif italic text-2xl text-slate-300">
                   More Doctors<br/>
                   <span className="gold-gradient-text font-bold">A Healthier Tomorrow</span>

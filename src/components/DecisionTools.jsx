@@ -1,0 +1,20 @@
+import { useState } from 'react';
+import { track } from '../data/config';
+const fields = [['name', 'College name'], ['tuition', 'Annual tuition (₹)'], ['living', 'Annual hostel & living (₹)'], ['years', 'Years of charges'], ['other', 'Other total charges (₹)']];
+const initial = () => ({ name: '', tuition: '', living: '', years: '', other: '' });
+const total = c => ['tuition', 'living', 'years', 'other'].every(k => c[k] !== '' && Number.isFinite(Number(c[k])) && Number(c[k]) >= 0 && Number(c[k]) <= 100000000) && Number(c.years) >= 0.5 && Number(c.years) <= 10 ? (Number(c.tuition) + Number(c.living)) * Number(c.years) + Number(c.other) : null;
+const money = value => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(value);
+export function CostComparison({ single = false }) {
+ const [values, setValues] = useState(() => [initial(), initial()]);
+ const [started, setStarted] = useState(false);
+ const change = (i, key, value) => { if (!started) { track(single ? 'tool_open' : 'compare_start', { tool: single ? 'cost_calculator' : 'college_comparison' }); setStarted(true); } setValues(previous => previous.map((v, j) => i === j ? { ...v, [key]: value } : v)); };
+ return <section id={single ? 'cost-calculator' : 'comparison'} className="bg-white"><div className="content-wrap"><p className="eyebrow">{single ? 'MBBS COST CALCULATOR' : 'SMART COMPARISON'}</p><h2>{single ? 'Understand your complete MBBS budget.' : 'Confused between two colleges?'}</h2><p className="section-copy">Compare tuition, total cost, cutoff trends, hostel, bond, seats and counselling route side by side. Enter costs from the institutions you are considering to estimate your budget.</p>
+ <p className="text-sm text-slate-500 mb-6">Your entries stay in this page. These are your estimates; confirm the fee schedule, charging period and additional costs with each institution.</p>
+ <div className={single ? 'cost-columns single' : 'cost-columns'}>{values.slice(0, single ? 1 : 2).map((value, i) => <fieldset className="cost-card" key={i}><legend>{single ? 'Your cost estimate' : `College ${i === 0 ? 'A' : 'B'}`}</legend>{fields.map(([key, label]) => <label key={key}>{label}<input aria-label={`${label}${single ? '' : ` ${i === 0 ? 'A' : 'B'}`}`} type={key === 'name' ? 'text' : 'number'} min={key === 'years' ? '0.5' : '0'} max={key === 'years' ? '10' : '100000000'} step={key === 'years' ? '0.5' : '1'} value={value[key]} onChange={e => change(i, key, e.target.value)} /></label>)}<output className="cost-total" aria-live="polite"><span>Estimated total cost</span><strong>{total(value) === null ? 'Enter your costs' : money(total(value))}</strong></output><details className="mt-5"><summary>Other details to compare</summary><p className="text-sm text-slate-600 mt-3">Check the latest seats, historical cutoff year and round, counselling authority, bond conditions, hostel charges and refund terms in official documents.</p></details></fieldset>)}</div>
+ {!single && total(values[0]) !== null && total(values[1]) !== null && <p className="coverage-line" role="status">Estimated cost difference: {money(Math.abs(total(values[0]) - total(values[1])))}</p>}
+ <a className="text-link inline-block mt-6" href="/medical-colleges/">Explore Medical Colleges →</a></div></section>;
+}
+export function Checklist() {
+ const items = ['NEET scorecard and admit card', 'Identity and date-of-birth documents', 'Academic certificates and marksheets', 'Domicile and category documents where applicable', 'Current counselling bulletin and registration requirements', 'College preference list and complete cost comparison', 'Allotment, reporting, payment and refund instructions'];
+ return <section className="bg-white"><div className="content-wrap"><h2>Prepare documents and choice strategy.</h2><p className="section-copy">Use this planning checklist, then verify the exact documents and formats in the current authority bulletin.</p><div className="checklist">{items.map(item => <label key={item}><input type="checkbox" />{item}</label>)}</div></div></section>;
+}

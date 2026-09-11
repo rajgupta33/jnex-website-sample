@@ -3,27 +3,27 @@ import { ArrowRight } from 'lucide-react';
 const paths = [
   {
     title: 'MBBS IN INDIA',
-    desc: 'Private • Deemed • Government • NRI',
-    linkText: 'Explore India',
-    href: '#colleges',
+    desc: 'Government • Private • Deemed • NRI',
+    linkText: 'Explore MBBS India',
+    href: '/mbbs-admission/',
   },
   {
     title: 'NEET COUNSELLING',
-    desc: 'AIQ • State • Choice Filling • Seat Strategy',
-    linkText: 'Plan Counselling',
+    desc: 'AIQ • State • Choice Filling • Round Strategy',
+    linkText: 'Plan My Counselling',
     href: '#counselling',
   },
   {
     title: 'MBBS ABROAD',
-    desc: 'Compare countries, universities and complete costs.',
-    linkText: 'Explore Abroad',
+    desc: 'Compare countries, universities, eligibility and complete costs.',
+    linkText: 'Explore MBBS Abroad',
     href: '#abroad',
   },
   {
-    title: 'PG MEDICAL',
-    desc: 'MD/MS counselling and college guidance',
-    linkText: 'Explore PG',
-    href: 'mailto:info@jnexeducation.com?subject=PG%20medical%20counselling',
+    title: 'OTHER MEDICAL COURSES',
+    desc: 'BDS • AYUSH • Nursing • Physiotherapy • Pharmacy • Allied Health',
+    linkText: 'Explore Medical Admissions',
+    href: '/medical-admissions/',
   },
 ];
 

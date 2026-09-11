@@ -1,41 +1,9 @@
 import { useState, useEffect } from 'react';
 import { ArrowRight, ArrowLeft, RotateCcw, CheckCircle2 } from 'lucide-react';
 
-const INDIAN_STATES = [
-  'Andhra Pradesh',
-  'Arunachal Pradesh',
-  'Assam',
-  'Bihar',
-  'Chhattisgarh',
-  'Delhi (NCT)',
-  'Goa',
-  'Gujarat',
-  'Haryana',
-  'Himachal Pradesh',
-  'Jammu & Kashmir',
-  'Jharkhand',
-  'Karnataka',
-  'Kerala',
-  'Madhya Pradesh',
-  'Maharashtra',
-  'Manipur',
-  'Meghalaya',
-  'Mizoram',
-  'Nagaland',
-  'Odisha',
-  'Punjab',
-  'Rajasthan',
-  'Sikkim',
-  'Tamil Nadu',
-  'Telangana',
-  'Tripura',
-  'Uttar Pradesh',
-  'Uttarakhand',
-  'West Bengal',
-  'Chandigarh',
-  'Puducherry',
-  'Other / NRI'
-];
+import { domicileOptions as INDIAN_STATES, predictorNote } from '../data/admissions';
+import { track } from '../data/config';
+import LeadCapture from './LeadCapture';
 
 const CATEGORIES = ['General', 'OBC', 'SC', 'ST', 'EWS', 'NRI'];
 
@@ -54,11 +22,13 @@ const ProfileConversion = ({ initialProfile }) => {
 
   useEffect(() => {
     if (!initialProfile) return;
-    setScore(initialProfile.score);
+    setScore(initialProfile.score || '');
     setDomicile(initialProfile.domicile === 'Delhi' ? 'Delhi (NCT)' : initialProfile.domicile);
-    setStep(3);
+    setStep(initialProfile.score ? 3 : 1);
     setSubmitted(false);
   }, [initialProfile]);
+
+  useEffect(() => { if (step > 1) track('profile_step_complete', { step: step - 1 }); }, [step]);
 
   const handleCategorySelect = (cat) => {
     setCategory(cat);
@@ -76,8 +46,20 @@ const ProfileConversion = ({ initialProfile }) => {
 
   const handleSubmit = (e) => {
     if (e) e.preventDefault();
+    track('profile_complete');
+    track('pathway_result_view');
     setSubmitted(true);
   };
+
+  useEffect(() => {
+    const onStateLink = () => {
+      if (!window.location.hash.startsWith('#counselling?')) return;
+      const value = new URLSearchParams(window.location.hash.split('?')[1]).get('state');
+      if (INDIAN_STATES.includes(value)) { setDomicile(value); setSubmitted(false); setStep(1); document.getElementById('counselling')?.scrollIntoView(); }
+    };
+    onStateLink(); window.addEventListener('hashchange', onStateLink);
+    return () => window.removeEventListener('hashchange', onStateLink);
+  }, []);
 
   const handleReset = () => {
     setStep(1);
@@ -103,7 +85,7 @@ const ProfileConversion = ({ initialProfile }) => {
               Don't guess your admission chances.
             </h2>
             <p className="text-lg text-gray-600 mb-8 max-w-xl">
-              Build your profile and see which admission routes are actually worth exploring.
+              Build your profile and identify the MBBS admission routes across India that are actually worth exploring.
             </p>
 
             {/* Credibility metrics using typography and numbers */}
@@ -174,9 +156,9 @@ const ProfileConversion = ({ initialProfile }) => {
                       <button
                         type="button"
                         onClick={() => {
-                          if (score.trim()) setStep(2);
+                          if (/^(?:AIR\s*)?[0-9][0-9, ]*$/i.test(score.trim())) setStep(2);
                         }}
-                        disabled={!score.trim()}
+                        disabled={!/^(?:AIR\s*)?[0-9][0-9, ]*$/i.test(score.trim())}
                         className="bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3.5 px-8 rounded-xl transition-colors w-full sm:w-auto inline-flex items-center justify-center gap-2 cursor-pointer"
                       >
                         Continue <ArrowRight className="w-4 h-4" />
@@ -191,7 +173,7 @@ const ProfileConversion = ({ initialProfile }) => {
                         Select your domicile state
                       </h3>
                       <p className="text-sm text-gray-500 mb-6">
-                        State domicile determines your eligibility for the 85% state quota seats.
+                        Domicile, category and the current authority rules affect your available counselling routes.
                       </p>
                       <div className="mb-6">
                         <select aria-label="Domicile state"
@@ -350,10 +332,10 @@ const ProfileConversion = ({ initialProfile }) => {
                     <CheckCircle2 className="w-4 h-4" /> Profile Summary Ready
                   </div>
                   <h3 className="text-2xl font-bold text-primary mb-2">
-                    Your admission profile
+                    Your JNEX Profile
                   </h3>
                   <p className="text-sm text-gray-500 mb-6">
-                    Your details are ready to discuss with a counsellor. This summary does not predict admission or submit your information.
+                    Review these pathways alongside your selected preference. Eligibility and a college shortlist require current official data and a profile review.
                   </p>
 
                   <div className="bg-slate-50 border border-gray-100 rounded-xl p-4 mb-6 space-y-2 text-sm">
@@ -379,10 +361,20 @@ const ProfileConversion = ({ initialProfile }) => {
                     </div>
                   </div>
 
+                  <div className="pathway-results">
+                    <h3 className="text-lg font-bold mb-4">3 admission pathways may be worth evaluating.</h3>
+                    {[
+                      ['Home-State MBBS Pathways', `Compare options under ${domicile} counselling rules.`],
+                      ['Selected Open-State / Eligible Pathways', 'Review options outside your domicile where current rules permit.'],
+                      [pathway === 'Abroad' ? 'MBBS Abroad' : 'Deemed / All-India Options', pathway === 'Abroad' ? 'Compare complete costs, eligibility and licensing considerations separately from India counselling.' : 'Compare fees, previous trends and total budget fit.'],
+                    ].map(([title, description], i) => <div className="pathway-result" key={title}><span>0{i + 1}</span><div><h4>{title}</h4><p>{description}</p></div></div>)}
+                    <p className="text-xs text-slate-500 my-5">{predictorNote}</p>
+                    <LeadCapture profile={{ score, domicile, category, budget, preference: pathway }} />
+                  </div>
                   <div className="space-y-3">
                     <button
                       type="button"
-                      onClick={() => document.getElementById('colleges').scrollIntoView({ behavior: 'smooth' })}
+                      onClick={() => { window.location.href = '/medical-colleges/'; }}
                       className="w-full bg-accent hover:bg-accent-light text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-colors cursor-pointer"
                     >
                       Explore Medical Colleges <ArrowRight className="w-4 h-4" />

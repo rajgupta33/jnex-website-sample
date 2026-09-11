@@ -1,22 +1,10 @@
 import { CountUp } from './HomepageMotion';
 
 const metrics = [
-  {
-    value: '4.9/5',
-    label: 'Student Rating',
-  },
-  {
-    value: '5,000+',
-    label: 'Students Guided',
-  },
-  {
-    value: '250+',
-    label: 'Medical Colleges Tracked',
-  },
-  {
-    value: '20+',
-    label: 'States Covered',
-  },
+ { value: 'PAN-INDIA', label: 'State-wise + all-India pathways' },
+ { value: 'PROFILE-BASED', label: 'Rank, domicile, category and budget' },
+ { value: 'COST CLARITY', label: 'Compare your complete budget' },
+ { value: 'COUNSELLING', label: 'From shortlist to joining' },
 ];
 
 const TrustStrip = () => {
@@ -26,7 +14,7 @@ const TrustStrip = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {metrics.map((metric) => (
             <div key={metric.label} className="text-center md:text-left">
-              <p className="text-2xl md:text-3xl font-extrabold text-primary tracking-tight">
+              <p className="text-base md:text-lg font-extrabold text-primary tracking-tight">
                 <CountUp value={metric.value} />
               </p>
               <p className="text-sm text-gray-500 font-medium mt-1">

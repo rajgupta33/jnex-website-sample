@@ -1,58 +1,30 @@
 import Brand from './Brand';
+import { navigation } from './Header';
+import { contactEmail, contactHref, whatsappNumber } from '../data/config';
+import { CURRENT_YEAR } from '../data/admissions';
 import { ArrowRight } from 'lucide-react';
 
 const Footer = () => {
-  const footerLinks = {
-    Admissions: [
-      { label: 'MBBS India', href: '#india' },
-      { label: 'NEET Counselling', href: '#neet-counselling' },
-      { label: 'Private MBBS', href: '#colleges' },
-      { label: 'Deemed Universities', href: '#colleges' },
-      { label: 'MBBS Abroad', href: '#abroad' },
-    ],
-    Explore: [
-      { label: 'Colleges', href: '#colleges' },
-      { label: 'Admission Profile', href: '#counselling' },
-      { label: 'Compare Colleges', href: '#comparison' },
-      { label: 'Counselling Tracker', href: '#live-updates' },
-    ],
-    Resources: [
-      { label: 'Cutoffs', href: '#colleges' },
-      { label: 'Fees', href: '#colleges' },
-      { label: 'Seat Matrix', href: '#colleges' },
-      { label: 'Guides', href: '#neet-counselling' },
-      { label: 'Parent Guidance', href: '#parents' },
-      { label: 'FAQs', href: '#faqs' },
-    ],
-    Company: [
-      { label: 'About Jnex', href: '#about' },
-      { label: 'Contact', href: '#contact' },
-      { label: 'For Parents', href: '#parents' },
-    ],
-  };
+  const footerLinks = Object.fromEntries(Object.entries({ ...navigation, 'Explore MBBS India': [['States', '/mbbs-admission/#states'], ['Private MBBS', '/private-mbbs-admission/'], ['Deemed Universities', '/deemed-university-mbbs/'], ['NRI Quota', '/nri-quota-mbbs/']], Scholarships: [['Scholarships & Funding', '/scholarships/'], ['Privacy Policy', '/privacy-policy/']] }).map(([group, links]) => [group, links.map(([label, href]) => ({label, href}))]));
 
   return (
     <footer className="bg-primary text-gray-400">
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main footer content */}
-        <div className="py-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 lg:gap-8">
+        <div className="py-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Brand column */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
-            <a href="#home" aria-label="JNEX Education home"><Brand /></a>
+            <a href="/" aria-label="JNEX Education home"><Brand /></a>
             <p className="text-sm font-medium text-gray-500 max-w-xs">
-              Medical Admission & Counselling Guidance
+              MBBS Admission Guidance Across India
             </p>
             <div className="mt-6 space-y-2 text-sm">
               <p>
-                <a href="mailto:info@jnexeducation.com" className="hover:text-white transition-colors">
-                  info@jnexeducation.com
+                <a href={contactHref} className="hover:text-white transition-colors">
+                  {contactEmail}
                 </a>
               </p>
-              <p>
-                <a href="tel:+919876543210" className="hover:text-white transition-colors">
-                  +91 98765 43210
-                </a>
-              </p>
+              {whatsappNumber && <p><a href={`tel:+${whatsappNumber}`}>+{whatsappNumber}</a></p>}
             </div>
           </div>
 
@@ -86,7 +58,7 @@ const Footer = () => {
             
           </div>
           <p className="text-sm text-gray-500">
-            © 2026 Jnex Education. All rights reserved.
+            © {CURRENT_YEAR} JNEX Education. All rights reserved.
           </p>
         </div>
       </div>

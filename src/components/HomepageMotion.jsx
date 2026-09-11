@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
 export function useReducedMotion() {
-  const [reduced, setReduced] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const [reduced, setReduced] = useState(false);
   useEffect(() => {
     const query = window.matchMedia('(prefers-reduced-motion: reduce)');
     const update = () => setReduced(query.matches);
+    update();
     query.addEventListener('change', update);
     return () => query.removeEventListener('change', update);
   }, []);
@@ -39,7 +40,7 @@ export default function HomepageMotion() {
 }
 
 export function TypedIntro() {
-  const phrase = 'A clearer path to your medical future.';
+  const phrase = 'Pan-India MBBS guidance. From shortlist to joining.';
   const reduced = useReducedMotion();
   const [length, setLength] = useState(0);
   useEffect(() => {

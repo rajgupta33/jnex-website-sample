@@ -1,19 +1,19 @@
 const points = [
   {
     title: 'RANK',
-    description: 'Previous counselling trends',
+    description: 'Previous counselling and cutoff trends',
   },
   {
     title: 'COST',
-    description: 'Realistic fee estimates',
+    description: 'Fees and realistic total-budget comparison',
   },
   {
-    title: 'FIT',
-    description: 'Profile-based college options',
+    title: 'STATE RULES',
+    description: 'Domicile, eligibility and counselling routes',
   },
   {
     title: 'STRATEGY',
-    description: 'Round-wise counselling guidance',
+    description: 'Round-wise choice and allotment planning',
   },
 ];
 

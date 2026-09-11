@@ -3,27 +3,27 @@ import { ArrowRight } from 'lucide-react';
 const resources = [
   {
     number: '01',
-    title: 'Admission Profile Builder',
+    title: 'NEET College Predictor',
     linkText: 'Check options',
-    href: '#counselling',
+    href: '/tools/neet-college-predictor/',
   },
   {
     number: '02',
-    title: 'College Fees Overview',
-    linkText: 'Explore fees',
-    href: '#colleges',
+    title: 'MBBS Cost Calculator',
+    linkText: 'Estimate costs',
+    href: '/tools/mbbs-cost-calculator/',
   },
   {
     number: '03',
-    title: 'Counselling Roadmap',
-    linkText: 'See the steps',
-    href: '#neet-counselling',
+    title: 'Counselling Checklist',
+    linkText: 'Get checklist',
+    href: '/tools/counselling-checklist/',
   },
   {
     number: '04',
     title: 'College Comparison',
     linkText: 'Compare colleges',
-    href: '#comparison',
+    href: '/compare-medical-colleges/',
   },
 ];
 

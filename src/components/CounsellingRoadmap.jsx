@@ -7,7 +7,7 @@ const steps = [
   {
     number: '02',
     title: 'College Mapping',
-    description: 'Identify realistic options.',
+    description: 'Identify realistic home-state, open-state and all-India options.',
   },
   {
     number: '03',
@@ -17,17 +17,17 @@ const steps = [
   {
     number: '04',
     title: 'Counselling Support',
-    description: 'Registration and documentation.',
+    description: 'Registration, documentation and process guidance.',
   },
   {
     number: '05',
-    title: 'Allotment',
-    description: 'Evaluate the allotted seat.',
+    title: 'Allotment Review',
+    description: 'Evaluate the allotted seat and next-step options.',
   },
   {
     number: '06',
     title: 'Joining',
-    description: 'Admission support until completion.',
+    description: 'Admission support through completion.',
   },
 ];
 

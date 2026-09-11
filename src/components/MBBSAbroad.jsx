@@ -4,34 +4,34 @@ const destinations = [
   {
     flag: 'GE',
     name: 'Georgia',
-    duration: '6 Years',
-    tuition: 'From ₹4.5L/year',
-    medium: 'English',
-    href: '#counselling',
+    duration: 'Check university',
+    tuition: 'Check current details',
+    medium: 'Check course',
+    href: '/#counselling',
   },
   {
     flag: 'RU',
     name: 'Russia',
-    duration: '6 Years',
-    tuition: 'From ₹3.5L/year',
-    medium: 'English',
-    href: '#counselling',
+    duration: 'Check university',
+    tuition: 'Check current details',
+    medium: 'Check course',
+    href: '/#counselling',
   },
   {
     flag: 'KZ',
     name: 'Kazakhstan',
-    duration: '5 Years',
-    tuition: 'From ₹4L/year',
-    medium: 'English',
-    href: '#counselling',
+    duration: 'Check university',
+    tuition: 'Check current details',
+    medium: 'Check course',
+    href: '/#counselling',
   },
   {
     flag: 'UZ',
     name: 'Uzbekistan',
-    duration: '6 Years',
-    tuition: 'From ₹3L/year',
-    medium: 'English',
-    href: '#counselling',
+    duration: 'Check university',
+    tuition: 'Check current details',
+    medium: 'Check course',
+    href: '/#counselling',
   },
 ];
 
@@ -47,7 +47,7 @@ const MBBSAbroad = () => {
             Considering MBBS Abroad?
           </h2>
           <p className="text-lg text-gray-600 mt-4 leading-relaxed">
-            Compare complete cost, duration and eligibility before choosing a destination.
+            Compare complete cost, duration, eligibility and licensing considerations before choosing a destination.
           </p>
         </div>
 
@@ -98,10 +98,10 @@ const MBBSAbroad = () => {
 
         <div className="text-center mt-10 md:mt-12">
           <a
-            href="#counselling"
+            href="/#counselling"
             className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-white font-bold py-4 px-8 rounded-xl transition-colors shadow-sm"
           >
-            <span>Discuss MBBS Abroad Options</span>
+            <span>Compare MBBS Abroad Options</span>
             <ArrowRight className="w-5 h-5" />
           </a>
         </div>
