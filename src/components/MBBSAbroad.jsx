@@ -1,113 +1,27 @@
+import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { destinations, referenceNote, referenceFiles } from '../data/addition-content';
+import { contactHref } from '../data/config';
 
-const destinations = [
-  {
-    flag: 'GE',
-    name: 'Georgia',
-    duration: 'Check university',
-    tuition: 'Check current details',
-    medium: 'Check course',
-    href: '/#counselling',
-  },
-  {
-    flag: 'RU',
-    name: 'Russia',
-    duration: 'Check university',
-    tuition: 'Check current details',
-    medium: 'Check course',
-    href: '/#counselling',
-  },
-  {
-    flag: 'KZ',
-    name: 'Kazakhstan',
-    duration: 'Check university',
-    tuition: 'Check current details',
-    medium: 'Check course',
-    href: '/#counselling',
-  },
-  {
-    flag: 'UZ',
-    name: 'Uzbekistan',
-    duration: 'Check university',
-    tuition: 'Check current details',
-    medium: 'Check course',
-    href: '/#counselling',
-  },
-];
-
-const MBBSAbroad = () => {
-  return (
-    <section id="abroad" className="py-20 md:py-28 bg-slate-50">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-12 md:mb-16">
-          <p className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-3">
-            GLOBAL MEDICAL EDUCATION
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight">
-            Considering MBBS Abroad?
-          </h2>
-          <p className="text-lg text-gray-600 mt-4 leading-relaxed">
-            Compare complete cost, duration, eligibility and licensing considerations before choosing a destination.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {destinations.map((destination) => (
-            <div
-              key={destination.name}
-              className="group flex flex-col justify-between bg-white rounded-2xl p-6 border border-gray-100 hover:border-gray-200 hover:shadow-md transition-all"
-            >
-              <div>
-                <div
-                  className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-slate-100 text-slate-600 font-bold text-sm tracking-widest mb-4 select-none"
-                  
-                  aria-hidden="true"
-                >
-                  {destination.flag}
-                </div>
-                <h3 className="font-bold text-lg text-primary">
-                  {destination.name}
-                </h3>
-
-                <div className="space-y-2.5 my-5 py-4 border-y border-gray-100">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-500 text-xs font-medium">Course Duration</span>
-                    <span className="font-semibold text-primary">{destination.duration}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-500 text-xs font-medium">Estimated Tuition</span>
-                    <span className="font-semibold text-primary">{destination.tuition}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-500 text-xs font-medium">Medium</span>
-                    <span className="font-semibold text-primary">{destination.medium}</span>
-                  </div>
-                </div>
-              </div>
-
-              <a
-                href={destination.href}
-                className="text-accent font-semibold text-sm inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all mt-2"
-              >
-                <span>Discuss {destination.name}</span>
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-              </a>
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center mt-10 md:mt-12">
-          <a
-            href="/#counselling"
-            className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-white font-bold py-4 px-8 rounded-xl transition-colors shadow-sm"
-          >
-            <span>Compare MBBS Abroad Options</span>
-            <ArrowRight className="w-5 h-5" />
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default MBBSAbroad;
+export default function MBBSAbroad({ full = false }) {
+  const [query, setQuery] = useState('');
+  const featured = ['Georgia', 'Russia', 'Kazakhstan', 'Uzbekistan'];
+  const visible = (full ? destinations : featured.map(name => destinations.find(destination => destination.name === name))).filter(destination => destination.name.toLowerCase().includes(query.trim().toLowerCase()));
+  return <section id="abroad" className="bg-slate-50"><div className="content-wrap">
+    <p className="eyebrow">GLOBAL MEDICAL EDUCATION</p><h2>{full ? 'Explore 14 medical study destinations.' : 'Considering MBBS Abroad?'}</h2>
+    <p className="section-copy">Compare complete cost, course structure, clinical training and licensing considerations before choosing a university. Country-level information is a starting point for a university-specific review.</p>
+    {full && <label className="state-search"><span className="sr-only">Find a medical study destination</span><input type="search" placeholder="Find a destination" value={query} onChange={event => setQuery(event.target.value)} /></label>}
+    <div className={full ? 'discovery-grid' : 'abroad-preview-grid'}>{visible.map(destination => <article id={full ? `destination-${destination.code.toLowerCase()}` : undefined} className="discovery-card destination-card" key={destination.code}>
+      <span className="destination-code" aria-hidden="true">{destination.code}</span><h3>{destination.name}</h3>
+      <dl className="reference-facts"><div><dt>Typical duration in supplied guide</dt><dd>{destination.duration}</dd></div><div><dt>Instruction medium in supplied guide</dt><dd>{destination.medium}</dd></div>{full && <div><dt>Approximate budget in supplied poster</dt><dd>{destination.budget ? `₹${destination.budget[0]}–${destination.budget[1]} lakh` : 'Request university-specific costs'}</dd></div>}</dl>
+      {full && destination.budget && <p className="reference-note">Unverified country-level total-fee reference; inclusions and charging period need confirmation. Not a university quote.</p>}
+      <a className="text-link" href={full ? `${contactHref}?subject=${encodeURIComponent('Medical study in ' + destination.name)}` : `/mbbs-abroad/#destination-${destination.code.toLowerCase()}`}>{full ? `Discuss ${destination.name}` : `Explore ${destination.name}`} <ArrowRight size={15} aria-hidden="true" /></a>
+    </article>)}</div>
+    {!visible.length && <p className="empty-data" role="status">No matching destinations. Try another country name.</p>}
+    {full ? <>
+      <div className="reference-callout" id="licensing"><h3>Review the university and licensing pathway together.</h3><p>Before applying, check the complete curriculum, English instruction, clinical training, internship arrangements, eligibility for local registration and the current requirements for registration in India. A country name or directory entry does not establish that an individual course meets these requirements.</p><a className="text-link" href="https://www.nmc.org.in/rules-regulations-nmc/">Read current NMC regulations and FMGL FAQs ↗</a></div>
+      <p className="data-note">{referenceNote} Typical durations may include foundation or internship requirements and vary by university. Country rankings, FMGE performance and blanket “NMC approved university” claims from the promotional poster are not adopted.</p>
+      <div className="section-actions"><a className="primary-button" href="/resources/#medical-abroad">Open the medical destination guide <ArrowRight size={16} aria-hidden="true" /></a><a className="text-link" href={referenceFiles['study_abroad_guide_updated.pdf']}>View original PDF</a></div>
+    </> : <div className="section-actions"><a className="primary-button" href="/mbbs-abroad/">Explore all 14 destinations <ArrowRight size={16} aria-hidden="true" /></a><a className="text-link" href="/resources/#medical-abroad">Read the medical study guide</a></div>}
+  </div></section>;
+}

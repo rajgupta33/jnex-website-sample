@@ -1,6 +1,7 @@
 export const medical = [
  ['BDS', 'Dental admission guidance'], ['AYUSH', 'BAMS • BHMS • BUMS • BSMS'], ['Nursing', 'B.Sc Nursing and supported nursing pathways'], ['Physiotherapy', 'BPT and supported pathways'], ['Pharmacy', 'B.Pharm • Pharm.D'], ['Allied Health', 'Laboratory • Radiology • Cardiac Care • OT • Anesthesia • Perfusion • Optometry'], ['Paramedical', 'Career and admission options across healthcare support programs'],
 ];
+medical.push(['Veterinary', 'BVSc & AH · Veterinary science admission guidance'], ['Research', 'Biotechnology · Microbiology · Genetics · Forensic Science · Nutrition · Clinical Research']);
 export const india = [
  ['Engineering & Technology', 'B.Tech • B.E. • M.Tech • M.E. • CSE • AI/ML • Data Science • Cyber Security • IT • ECE • Mechanical • Civil • Electrical • Automobile'],
  ['Computer & IT', 'BCA • MCA • B.Sc CS/IT • Data Science • AI • Cyber Security • Cloud • Software Development'],

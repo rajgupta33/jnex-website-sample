@@ -1,5 +1,5 @@
 import { CURRENT_YEAR, admissionRoutes, states, publishedState } from './data/admissions';
-import { medical, india, abroad, scholarships, services } from './data/portfolio';
+import { india, abroad, scholarships, services } from './data/portfolio';
 import { contactHref } from './data/config';
 import PanIndia from './components/PanIndia';
 import ProfileConversion from './components/ProfileConversion';
@@ -9,12 +9,19 @@ import LiveCounsellingHub from './components/LiveCounsellingHub';
 import MBBSAbroad from './components/MBBSAbroad';
 import { CostComparison, Checklist } from './components/DecisionTools';
 import FAQ from './components/FAQ';
+import ResourceLibrary from './components/ResourceLibrary';
+import MedicalPathways from './components/MedicalPathways';
+import EngineeringDirectory from './components/EngineeringDirectory';
+import StateAdmissionContent, { MaharashtraFunding } from './components/StateAdmissionContent';
+import { stateGuides } from './data/addition-content';
 
 export const pages = {
  '/': ['MBBS Admission & NEET Counselling ' + CURRENT_YEAR + ' | JNEX Education', 'Get MBBS admission guidance across India based on NEET rank, domicile, category and budget. Compare colleges, fees, cutoffs and counselling routes.'],
  '/mbbs-admission/': ['MBBS Admission in India ' + CURRENT_YEAR + ' | Counselling, Colleges & Fees | JNEX', 'Explore MBBS admission in India through NEET counselling. Compare state-wise options, Government, Private and Deemed colleges, fees, cutoffs and admission routes with JNEX.', `MBBS Admission in India ${CURRENT_YEAR}: State-wise Counselling, Colleges & Options`],
  '/medical-admissions/': ['Medical Admissions | JNEX Education', 'Explore MBBS, dental, AYUSH, nursing, physiotherapy, pharmacy and allied-health admission guidance.', 'Medical Admissions'],
  '/india-admissions/': ['India Admissions | JNEX Education', 'Explore engineering, IT, management, undergraduate, postgraduate and professional course guidance with JNEX.', 'Plan your next admission in India.'],
+ '/india-admissions/engineering/': ['Engineering College Directory in India | JNEX Education', 'Explore engineering institution references across India, Karnataka, Maharashtra and Tamil Nadu with locations and supplied affiliation details.', 'Explore engineering institutions in India.'],
+ '/resources/': ['Admission Guides & Resources | JNEX Education', 'Explore JNEX medical, allied health, engineering and international medical study guides with labelled source notes and original downloads.', 'A clearer starting point for your admission plans.'],
  '/study-abroad/': ['Study Abroad | JNEX Education', 'Explore international undergraduate, postgraduate, business, technology and healthcare study pathways.', 'Find your path to studying abroad.'],
  '/scholarships/': ['Scholarships & Funding | JNEX Education', 'Explore university, merit, government and program-specific funding opportunities.', 'Scholarships & Funding'],
  '/services/': ['Admission & Counselling Services | JNEX Education', 'Explore profile analysis, college selection, application, documentation and admission support.', 'Support for your next admission decision.'],
@@ -31,31 +38,39 @@ export const pages = {
  '/nri-quota-mbbs/': ['NRI Quota MBBS Guidance | JNEX Education', admissionRoutes[5][1], 'NRI / Other Applicable Quotas'],
  '/privacy-policy/': ['Privacy & Admission Enquiries | JNEX Education', 'How the admission profile and enquiry form handle your information.', 'Privacy & Admission Enquiries'],
 };
+for (const state of stateGuides) pages[`/mbbs-admission/${state.slug}/`] = [`MBBS Planning in ${state.name} | Colleges & Fee References | JNEX`, state.intro, `MBBS admission planning in ${state.name}.`];
 for (const state of states.filter(publishedState)) pages[`/mbbs-admission/${state.slug}/`] = [state.seo_title, state.meta_description, state.h1];
 export function PageIntro({ path }) {
  const page = pages[path];
- return <section className="page-intro"><div className="content-wrap"><nav aria-label="Breadcrumb" className="breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>{page?.[2] || 'Page not found'}</span></nav><p className="eyebrow">JNEX EDUCATION</p><h1>{page?.[2] || 'Page not found'}</h1><p>{path === '/mbbs-admission/' ? 'Understand your MBBS admission pathways across India using your NEET score or AIR, domicile, category, budget and preferences. Compare state counselling, All India counselling, Government, Private and Deemed University options with current data and clear next steps.' : page?.[1] || 'This page is not published. Explore MBBS admissions in India or return to the homepage.'}</p><div className="section-actions"><a href="/#counselling" className="primary-button">Check My MBBS Options →</a><a className="text-link" href="/mbbs-admission/#states">Explore My State →</a></div></div></section>;
+ const state = stateGuides.find(state => path === `/mbbs-admission/${state.slug}/`);
+ const mbbsIntent = /mbbs|neet|medical-colleges|compare-medical/.test(path);
+ const primaryHref = state ? `/#counselling?state=${encodeURIComponent(state.name)}` : mbbsIntent ? '/#counselling' : `${contactHref}?subject=${encodeURIComponent((page?.[2] || 'Admission') + ' enquiry')}`;
+ return <section className="page-intro"><div className="content-wrap"><nav aria-label="Breadcrumb" className="breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span>{state && <><a href="/mbbs-admission/">MBBS India</a><span aria-hidden="true">/</span></>}<span>{state?.name || page?.[2] || 'Page not found'}</span></nav><p className="eyebrow">JNEX EDUCATION</p><h1>{page?.[2] || 'Page not found'}</h1><p>{path === '/mbbs-admission/' ? 'Understand your MBBS admission pathways across India using your NEET score or AIR, domicile, category, budget and preferences. Compare state counselling, All India counselling, Government, Private and Deemed University options with clear next steps.' : page?.[1] || 'This page is not published. Explore MBBS admissions in India or return to the homepage.'}</p><div className="section-actions"><a href={primaryHref} className="primary-button">{mbbsIntent ? 'Check My MBBS Options' : 'Discuss My Admission Options'} →</a><a className="text-link" href={mbbsIntent ? '/mbbs-admission/#states' : '/resources/'}>{mbbsIntent ? 'Explore States' : 'Explore Guides & Resources'} →</a></div></div></section>;
 }
 function Portfolio({ items }) { return <section className="bg-white"><div className="content-wrap"><div className="discovery-grid">{items.map(([title, copy]) => <article id={title.toLowerCase().replaceAll(' ', '-')} className="discovery-card" key={title}><h2 className="portfolio-title">{title}</h2><p>{copy}</p><a className="text-link" href={`${contactHref}?subject=${encodeURIComponent(title + ' admission enquiry')}`}>Discuss {title} →</a></article>)}</div></div></section>; }
 export function AdmissionRoutes() { return <section id="admission-routes" className="bg-white"><div className="content-wrap"><h2>Understand MBBS admission routes.</h2><p className="section-copy">MBBS admission in India is not a single counselling process. The route available to a student can depend on NEET eligibility and rank, domicile, category, the type of institution, the counselling authority and the rules for the current academic year. JNEX Education helps students and parents compare these routes before making a preference or payment decision.</p><div className="discovery-grid">{admissionRoutes.map(([title, copy]) => <article className="discovery-card" key={title}><h3>{title}</h3><p>{copy}</p></article>)}</div><div className="section-actions"><a href="/private-mbbs-admission/" className="text-link">Private MBBS →</a><a href="/deemed-university-mbbs/" className="text-link">Deemed Universities →</a><a href="/nri-quota-mbbs/" className="text-link">NRI Quota →</a></div></div></section>; }
 export default function PageContent({ path }) {
  if (path === '/mbbs-admission/') return <><PanIndia full /><AdmissionRoutes /><ProfileConversion /><CollegeExplorer /><CostComparison /><LiveCounsellingHub /><Checklist /><FAQ /></>;
- if (path === '/medical-admissions/') return <><section className="bg-white"><div className="content-wrap"><div className="section-actions"><a href="/mbbs-admission/" className="primary-button">MBBS India →</a><a href="/neet-ug-counselling/" className="text-link">NEET Counselling →</a><a href="/mbbs-abroad/" className="text-link">MBBS Abroad →</a></div></div></section><Portfolio items={medical} /></>;
- if (path === '/india-admissions/') return <Portfolio items={india} />;
- if (path === '/study-abroad/') return <Portfolio items={abroad} />;
- if (path === '/scholarships/') return <section className="bg-white"><div className="content-wrap"><h2>Explore funding opportunities.</h2><p className="section-copy">Compare eligibility, award coverage, application requirements and deadlines with the relevant scholarship provider before applying.</p><div className="funding-tags">{scholarships.map(x => <a href={`${contactHref}?subject=${encodeURIComponent(x + ' scholarship enquiry')}`} key={x}>{x}</a>)}</div></div></section>;
+ if (path === '/medical-admissions/') return <><section className="bg-white"><div className="content-wrap"><div className="section-actions"><a href="/mbbs-admission/" className="primary-button">MBBS India →</a><a href="/neet-ug-counselling/" className="text-link">NEET Counselling →</a><a href="/mbbs-abroad/" className="text-link">MBBS Abroad →</a></div></div></section><MedicalPathways /></>;
+ if (path === '/india-admissions/') return <><section className="bg-slate-50"><div className="content-wrap"><p className="eyebrow">ENGINEERING DIRECTORY</p><h2>Start with institutions, then compare your course.</h2><p className="section-copy">Explore the supplied national, Karnataka, Maharashtra and Tamil Nadu engineering directories. Compare locations and institution references before discussing branches, entry routes and complete costs.</p><a className="primary-button mt-6" href="/india-admissions/engineering/">Explore engineering institutions →</a></div></section><Portfolio items={india} /></>;
+ if (path === '/india-admissions/engineering/') return <EngineeringDirectory />;
+ if (path === '/resources/') return <ResourceLibrary />;
+ if (path === '/study-abroad/') return <><Portfolio items={abroad} /><section className="bg-slate-50"><div className="content-wrap"><h2>Considering medical study overseas?</h2><p className="section-copy">Explore a separate directory of 14 medical destinations, with typical course structures, supplied budget references and licensing questions.</p><a className="primary-button mt-6" href="/mbbs-abroad/">Explore medical study abroad →</a></div></section></>;
+ if (path === '/scholarships/') return <><section className="bg-white"><div className="content-wrap"><h2>Explore funding opportunities.</h2><p className="section-copy">Compare eligibility, award coverage, application requirements and deadlines with the relevant scholarship provider before applying.</p><div className="funding-tags">{scholarships.map(x => <a href={`${contactHref}?subject=${encodeURIComponent(x + ' scholarship enquiry')}`} key={x}>{x}</a>)}</div></div></section><MaharashtraFunding /></>;
  if (path === '/services/') return <section className="bg-white"><div className="content-wrap"><div className="funding-tags">{services.map(x => <a href={`${contactHref}?subject=${encodeURIComponent(x + ' enquiry')}`} key={x}>{x} →</a>)}</div><CounsellingRoadmap /></div></section>;
  if (path === '/neet-ug-counselling/') return <><CounsellingRoadmap /><AdmissionRoutes /><Checklist /><LiveCounsellingHub /></>;
- if (path === '/medical-colleges/') return <CollegeExplorer />;
+ if (path === '/medical-colleges/') return <CollegeExplorer full />;
  if (path === '/neet-counselling-tracker/') return <><LiveCounsellingHub /><PanIndia editorial /></>;
  if (path === '/compare-medical-colleges/') return <CostComparison />;
  if (path === '/tools/neet-college-predictor/') return <ProfileConversion />;
  if (path === '/tools/mbbs-cost-calculator/') return <CostComparison single />;
  if (path === '/tools/counselling-checklist/') return <Checklist />;
- if (path === '/mbbs-abroad/') return <MBBSAbroad />;
- if (['/private-mbbs-admission/', '/deemed-university-mbbs/', '/nri-quota-mbbs/'].includes(path)) return <><AdmissionRoutes /><CollegeExplorer /><ProfileConversion /></>;
+ if (path === '/mbbs-abroad/') return <MBBSAbroad full />;
+ if (['/private-mbbs-admission/', '/deemed-university-mbbs/', '/nri-quota-mbbs/'].includes(path)) return <><AdmissionRoutes /><CollegeExplorer full initialManagement={path === '/private-mbbs-admission/' ? 'Private' : path === '/deemed-university-mbbs/' ? 'Deemed' : ''} /><ProfileConversion /></>;
  if (path === '/privacy-policy/') return <section className="bg-white"><div className="content-wrap prose-copy"><h2>Your profile and contact details</h2><p>The profile builder uses your entries to display an admission planning summary in this page. Profile entries are not saved in browser storage.</p><p>When you request a shortlist by email, the site prepares a draft containing the information you entered. The email is sent only when you send it from your email app. If an online enquiry service is enabled, the form sends your contact details, profile and enquiry context to that service when you submit.</p><p>Your details are used to respond to your admission enquiry and personalise your options. A JNEX counsellor may contact you by phone or WhatsApp regarding your enquiry.</p><h2>Usage and external services</h2><p>The site records interaction event names for measurement. Personal contact details, NEET rank, category and budget are not included in these analytics events. External email, WhatsApp, fonts and linked authority websites operate under their own privacy terms.</p><p>For questions about your information or to request correction or deletion, <a href={contactHref}>contact JNEX by email</a>.</p></div></section>;
  const state = states.find(s => `/mbbs-admission/${s.slug}/` === path && publishedState(s));
+ const referenceState = stateGuides.find(s => `/mbbs-admission/${s.slug}/` === path);
+ if (referenceState && !state) return <StateAdmissionContent state={referenceState} />;
  if (state) return <><section className="bg-white"><div className="content-wrap prose-copy"><p>{state.intro}</p><p>Last reviewed: {state.last_reviewed}</p><a href={state.authority_url}>{state.counselling_authority} ↗</a>{state.sections.map(section => <article key={section.heading}><h2>{section.heading}</h2><p>{section.content}</p></article>)}{state.faqs.map(([q,a]) => <details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div></section><ProfileConversion initialProfile={{ domicile: state.name }} /></>;
  return null;
 }

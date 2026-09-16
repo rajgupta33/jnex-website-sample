@@ -1,6 +1,7 @@
 import Brand from './Brand';
 import { navigation } from './Header';
-import { contactEmail, contactHref, whatsappNumber } from '../data/config';
+import { contactEmail, contactHref } from '../data/config';
+import { ContactNumbers } from './ReferenceUI';
 import { CURRENT_YEAR } from '../data/admissions';
 import { ArrowRight } from 'lucide-react';
 
@@ -24,7 +25,7 @@ const Footer = () => {
                   {contactEmail}
                 </a>
               </p>
-              {whatsappNumber && <p><a href={`tel:+${whatsappNumber}`}>+{whatsappNumber}</a></p>}
+              <ContactNumbers dark compact />
             </div>
           </div>
 

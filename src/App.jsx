@@ -49,7 +49,7 @@ function App({ path = typeof window !== 'undefined' ? window.location.pathname.r
         <Guides />
         <FAQ />
         </>}
-        <FinalCTA />
+        <FinalCTA path={path} />
       </main>
       <Footer />
 
