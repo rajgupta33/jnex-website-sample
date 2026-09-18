@@ -28,3 +28,14 @@ Photorealistic stock-style architectural photo for a premium medical university 
 
 ## Implementation
 Images are local, lazy-loaded, dimensioned to reserve layout space, and have descriptive alternative text. Captions identify illustration imagery. Card images have a restrained hover zoom with reduced-motion support. No real testimonials or identities were invented.
+
+## Hero slider and visual refresh (added 2026-09-18)
+| Local file | Placement | Source |
+|---|---|---|
+| images/hero/slide-1…4-desktop.webp, slide-1…4-mobile.webp | Homepage hero slider (desktop ≥768px for slide 1, ≥1024px for slides 2–4) | Client-supplied artwork (`hero slides reference + images`, slide 1 = existing hero), converted to WebP |
+| images/intro/*.webp | Internal page intro backdrops | WebP copies of campus-india.png, campus-courtyard.png, counselling-family.png |
+| images/thumbs/*.webp | Resource card poster thumbnails | Top crops of the supplied state/abroad posters in public/resources |
+| images/flags/gb, us, ca, au, de, ie, nz, fr, it, sg, ae .svg | Study abroad flags | flag-icons (MIT), same source as the existing flags |
+| src/data/state-shapes.js | State outline icons | Simplified from @svg-maps/india (CC BY 4.0, credited in the footer). Jammu & Kashmir, Ladakh and small UTs are intentionally not drawn; they use a map pin. |
+
+College crests are generated monogram shields, not official college logos. Replace them with supplied logos when available.

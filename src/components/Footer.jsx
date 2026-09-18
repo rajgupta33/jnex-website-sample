@@ -60,6 +60,7 @@ const Footer = () => {
           </div>
           <p className="text-sm text-gray-500">
             © {CURRENT_YEAR} JNEX Education. All rights reserved.
+            <span className="block text-xs text-gray-600 mt-1">State outlines adapted from <a href="https://github.com/VictorCazanave/svg-maps" className="underline">SVG Maps</a> (CC BY 4.0).</span>
           </p>
         </div>
       </div>

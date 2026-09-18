@@ -1,7 +1,16 @@
 import { useState } from 'react';
-import { ArrowRight, BookOpen, Download } from 'lucide-react';
+import { ArrowRight, BookOpen, Download, Stethoscope, Activity, Globe, Cog, MapPinned } from 'lucide-react';
 import { referenceFiles, resources, stateGuides, contentReviewDate } from '../data/addition-content';
 import { track } from '../data/config';
+
+const categoryIcons = { 'Medical India': Stethoscope, 'Allied Health': Activity, 'Medical Abroad': Globe, Engineering: Cog, 'State References': MapPinned };
+
+// Image references show a poster thumbnail; documents get a themed cover with their category icon.
+function ResourceCover({ resource }) {
+  const Icon = categoryIcons[resource.category] || BookOpen;
+  const thumb = resource.format === 'Image' && resource.download ? `/images/thumbs/${resource.download.split('/').pop().replace(/\.[a-z]+$/i, '')}.webp` : null;
+  return <div className={`resource-cover${thumb ? ' has-thumb' : ''}`} aria-hidden="true">{thumb ? <img src={thumb} alt="" width="480" height="298" loading="lazy" /> : <><Icon strokeWidth={1.5} /><span>{resource.format}</span></>}</div>;
+}
 
 export default function ResourceLibrary({ preview = false }) {
   const [category, setCategory] = useState('All');
@@ -18,6 +27,7 @@ export default function ResourceLibrary({ preview = false }) {
     <p className="section-copy">Explore readable course and college information, then open the original guides for more context. Supplied fee and cutoff figures are planning references that need official confirmation.</p>
     {!preview && <div className="reference-tabs" role="group" aria-label="Filter resources by category">{['All', ...new Set(all.map(resource => resource.category))].map(value => <button type="button" aria-pressed={category === value} key={value} onClick={() => setCategory(value)}>{value}</button>)}</div>}
     <div className="discovery-grid">{visible.map(resource => <article id={preview ? undefined : resource.id} className="discovery-card resource-card" key={resource.id}>
+      <ResourceCover resource={resource} />
       <div className="resource-meta"><BookOpen size={18} aria-hidden="true" /><span>{resource.category}</span><span>{resource.format}</span></div>
       <h3>{resource.title}</h3><p>{resource.copy}</p>{!preview && <p className="reference-note">{resource.note}</p>}
       <a className="text-link" href={resource.href}>Explore on the website <ArrowRight size={15} aria-hidden="true" /></a>

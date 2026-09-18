@@ -3,6 +3,8 @@ import { ArrowUpRight, Search, MapPin } from 'lucide-react';
 import { regions, territories, states, featuredStates, publishedState, profileLink } from '../data/admissions';
 import { track } from '../data/config';
 import { stateGuides } from '../data/addition-content';
+import { StateShape } from './Visuals';
+import { stateShapes } from '../data/state-shapes';
 
 export default function PanIndia({ full = false, editorial = false }) {
   const [expanded, setExpanded] = useState(full);
@@ -12,7 +14,7 @@ export default function PanIndia({ full = false, editorial = false }) {
     const published = state && publishedState(state);
     const referenceGuide = stateGuides.find(guide => guide.name === name);
     return <a key={name} className="state-card" href={published || referenceGuide ? `/mbbs-admission/${state?.slug || referenceGuide.slug}/` : profileLink(name)} aria-label={published || referenceGuide ? `MBBS admission planning in ${name}` : `Explore MBBS pathways for a student from ${name}`} onClick={() => track('state_card_click', { state: name })}>
-      <MapPin size={18} aria-hidden="true" /><span className="state-card-name"><strong>{name}</strong>{editorial && <small>{referenceGuide ? 'Explore routes, documents and labelled college fee references.' : 'Review counselling routes, eligibility and college options with your profile.'}</small>}</span><ArrowUpRight size={17} aria-hidden="true" />
+      {stateShapes[name] ? <StateShape name={name} className="state-card-shape" /> : <MapPin size={18} aria-hidden="true" />}<span className="state-card-name"><strong>{name}</strong>{editorial && <small>{referenceGuide ? 'Explore routes, documents and labelled college fee references.' : 'Review counselling routes, eligibility and college options with your profile.'}</small>}</span><ArrowUpRight size={17} aria-hidden="true" />
     </a>;
   }
   const matches = name => name.toLowerCase().includes(query.trim().toLowerCase());
