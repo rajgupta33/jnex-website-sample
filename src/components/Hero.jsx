@@ -75,14 +75,14 @@ const pathwaySlides = [
     ],
     listTitle: 'Popular Study Destinations',
     items: [
-      { label: 'United Kingdom', flag: 'gb', href: '/study-abroad/#destinations' },
-      { label: 'Canada', flag: 'ca', href: '/study-abroad/#destinations' },
-      { label: 'Australia', flag: 'au', href: '/study-abroad/#destinations' },
-      { label: 'Germany', flag: 'de', href: '/study-abroad/#destinations' },
-      { label: 'Ireland', flag: 'ie', href: '/study-abroad/#destinations' },
-      { label: 'United States', flag: 'us', href: '/study-abroad/#destinations' },
+      { label: 'United Kingdom', flag: 'gb', href: '/study-abroad/?country=gb#universities' },
+      { label: 'Canada', flag: 'ca', href: '/study-abroad/?country=ca#universities' },
+      { label: 'Australia', flag: 'au', href: '/study-abroad/?country=au#universities' },
+      { label: 'Germany', flag: 'de', href: '/study-abroad/?country=de#universities' },
+      { label: 'Ireland', flag: 'ie', href: '/study-abroad/?country=ie#universities' },
+      { label: 'United States', flag: 'us', href: '/study-abroad/?country=us#universities' },
     ],
-    moreLink: { label: 'Explore All Countries', href: '/study-abroad/#destinations' },
+    moreLink: { label: 'Explore All Countries', href: '/study-abroad/#universities' },
     features: [
       { label: 'Global Universities', icon: School },
       { label: 'Scholarship Guidance', icon: FileText },
@@ -136,8 +136,8 @@ function HeroMedia({ image }) {
   return (
     <div className="hero-media" aria-hidden="true">
       <picture>
-        <source media={image === 'slide-1' ? '(min-width: 768px)' : '(min-width: 1024px)'} srcSet={`/images/hero/${image}-desktop.webp`} />
-        <img src={`/images/hero/${image}-mobile.webp`} alt="" decoding="async" fetchPriority={image === 'slide-1' ? 'high' : 'low'} />
+        <source media="(min-width: 768px)" srcSet={`/images/hero/${image}-desktop.webp`} />
+        <img src={`/images/hero/${image}-mobile${image === 'slide-1' ? '' : '-v2'}.webp`} alt="" decoding="async" fetchPriority={image === 'slide-1' ? 'high' : 'low'} />
       </picture>
       {image === 'slide-1' ? <>
         <div className="absolute inset-0 bg-gradient-to-r from-[#020617]/95 via-[#020617]/80 to-transparent md:to-[#020617]/40"></div>

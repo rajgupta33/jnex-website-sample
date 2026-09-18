@@ -10,6 +10,7 @@ import MBBSAbroad from './components/MBBSAbroad';
 import { CostComparison, Checklist } from './components/DecisionTools';
 import FAQ from './components/FAQ';
 import ResourceLibrary from './components/ResourceLibrary';
+import StudyAbroadExplorer from './components/UniversityDirectory';
 import MedicalPathways from './components/MedicalPathways';
 import EngineeringDirectory from './components/EngineeringDirectory';
 import StateAdmissionContent, { MaharashtraFunding } from './components/StateAdmissionContent';
@@ -42,44 +43,59 @@ export const pages = {
 };
 for (const state of stateGuides) pages[`/mbbs-admission/${state.slug}/`] = [`MBBS Planning in ${state.name} | Colleges & Fee References | JNEX`, state.intro, `MBBS admission planning in ${state.name}.`];
 for (const state of states.filter(publishedState)) pages[`/mbbs-admission/${state.slug}/`] = [state.seo_title, state.meta_description, state.h1];
-// Each section family gets a faded photo backdrop; state and abroad pages add a matching visual.
-function introImage(path, isState) {
- if (isState) return ['/images/intro/campus-india.webp', true];
- if (/study-abroad|mbbs-abroad|scholarships/.test(path)) return ['/images/hero/slide-3-desktop.webp', false];
- if (path.startsWith('/india-admissions/engineering/')) return ['/images/hero/slide-2-desktop.webp', false];
- if (path.startsWith('/india-admissions/')) return ['/images/hero/slide-4-desktop.webp', false];
- if (/services|resources|privacy/.test(path)) return ['/images/intro/counselling.webp', true];
- return ['/images/hero/slide-1-desktop.webp', false];
+const pageIntroImages = {
+ '/mbbs-admission/': ['/images/page-intros/mbbs-admission.webp', false],
+ '/medical-admissions/': ['/images/page-intros/medical-admissions.webp', false],
+ '/india-admissions/': ['/images/page-intros/india-admissions.webp', false],
+ '/india-admissions/engineering/': ['/images/page-intros/engineering-directory.webp', false],
+ '/resources/': ['/images/page-intros/resources.webp', false],
+ '/study-abroad/': ['/images/page-intros/study-abroad.webp', false],
+ '/scholarships/': ['/images/page-intros/scholarships.webp', false],
+ '/services/': ['/images/page-intros/services.webp', false],
+ '/neet-ug-counselling/': ['/images/page-intros/neet-ug-counselling.webp', false],
+ '/medical-colleges/': ['/images/page-intros/medical-colleges.webp', false],
+ '/neet-counselling-tracker/': ['/images/page-intros/neet-counselling-tracker.webp', false],
+ '/compare-medical-colleges/': ['/images/page-intros/compare-medical-colleges.webp', false],
+ '/tools/neet-college-predictor/': ['/images/page-intros/neet-college-predictor.webp', false],
+ '/tools/mbbs-cost-calculator/': ['/images/page-intros/mbbs-cost-calculator.webp', false],
+ '/tools/counselling-checklist/': ['/images/page-intros/counselling-checklist.webp', false],
+ '/mbbs-abroad/': ['/images/page-intros/mbbs-abroad.webp', false],
+ '/private-mbbs-admission/': ['/images/page-intros/private-mbbs-admission.webp', false],
+ '/deemed-university-mbbs/': ['/images/page-intros/deemed-university-mbbs.webp', false],
+ '/nri-quota-mbbs/': ['/images/page-intros/nri-quota-mbbs.webp', false],
+ '/privacy-policy/': ['/images/page-intros/privacy-policy.webp', true],
+};
+const stateIntroImages = Object.fromEntries(stateGuides.map(state => [state.slug, [`/images/page-intros/state-${state.slug}.webp`, true]]));
+function introImage(path, stateSlug) {
+ if (stateSlug && stateIntroImages[stateSlug]) return stateIntroImages[stateSlug];
+ return pageIntroImages[path] || ['/images/page-intros/mbbs-admission.webp', false];
 }
 const studyAbroadFlags = ['gb', 'us', 'ca', 'au', 'de', 'ie', 'nz', 'fr'];
 export function PageIntro({ path }) {
  const page = pages[path];
  const state = stateGuides.find(state => path === `/mbbs-admission/${state.slug}/`);
- const stateName = state?.name || states.find(s => path === `/mbbs-admission/${s.slug}/`)?.name;
+ const publishedStatePage = states.find(s => path === `/mbbs-admission/${s.slug}/`);
+ const stateName = state?.name || publishedStatePage?.name;
  const mbbsIntent = /mbbs|neet|medical-colleges|compare-medical/.test(path);
  const primaryHref = state ? `/#counselling?state=${encodeURIComponent(state.name)}` : mbbsIntent ? '/#counselling' : `${contactHref}?subject=${encodeURIComponent((page?.[2] || 'Admission') + ' enquiry')}`;
- const [image, tinted] = introImage(path, Boolean(stateName));
+ const [image, tinted] = introImage(path, state?.slug || publishedStatePage?.slug);
  const flags = path === '/study-abroad/' ? studyAbroadFlags : path === '/mbbs-abroad/' ? destinations.map(destination => destination.code.toLowerCase()).slice(0, 8) : null;
  const visual = stateName ? <div className="intro-visual intro-state" aria-hidden="true"><StateShape name={stateName} /><span>{stateName}</span></div>
   : flags ? <div className="intro-visual intro-flags" aria-hidden="true">{flags.map(code => <Flag key={code} code={code} className="intro-flag" />)}</div> : null;
  return <section className={`page-intro${visual ? ' has-visual' : ''}`}><div className="page-intro-media" aria-hidden="true"><img className={tinted ? 'is-tinted' : ''} src={image} alt="" decoding="async" /></div><div className="content-wrap page-intro-layout"><div className="page-intro-copy"><nav aria-label="Breadcrumb" className="breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span>{state && <><a href="/mbbs-admission/">MBBS India</a><span aria-hidden="true">/</span></>}<span>{state?.name || page?.[2] || 'Page not found'}</span></nav><p className="eyebrow">JNEX EDUCATION</p><h1>{page?.[2] || 'Page not found'}</h1><p>{path === '/mbbs-admission/' ? 'Understand your MBBS admission pathways across India using your NEET score or AIR, domicile, category, budget and preferences. Compare state counselling, All India counselling, Government, Private and Deemed University options with clear next steps.' : page?.[1] || 'This page is not published. Explore MBBS admissions in India or return to the homepage.'}</p><div className="section-actions"><a href={primaryHref} className="primary-button">{mbbsIntent ? 'Check My MBBS Options' : 'Discuss My Admission Options'} →</a><a className="text-link" href={mbbsIntent ? '/mbbs-admission/#states' : '/resources/'}>{mbbsIntent ? 'Explore States' : 'Explore Guides & Resources'} →</a></div></div>{visual}</div></section>;
 }
-function Portfolio({ items }) { return <section className="bg-white section-decor"><div className="content-wrap"><div className="discovery-grid">{items.map(([title, copy]) => <article id={title.toLowerCase().replaceAll(' ', '-')} className="discovery-card icon-card" key={title}><TopicIcon title={title} /><h2 className="portfolio-title">{title}</h2>{title === 'Destinations' ? <div className="flag-row">{copy.split(' • ').map(country => <span key={country}><Flag country={country} />{country}</span>)}</div> : <p>{copy}</p>}<a className="text-link" href={`${contactHref}?subject=${encodeURIComponent(title + ' admission enquiry')}`}>Discuss {title} →</a></article>)}</div></div></section>; }
+function Portfolio({ items }) { return <section className="bg-white section-decor"><div className="content-wrap"><div className="discovery-grid">{items.map(([title, copy]) => <article id={title === 'Destinations' ? 'destination-overview' : title.toLowerCase().replaceAll(' ', '-')} className="discovery-card icon-card" key={title}><TopicIcon title={title} /><h2 className="portfolio-title">{title}</h2>{title === 'Destinations' ? <div className="flag-row">{copy.split(' • ').map(country => <span key={country}><Flag country={country} />{country}</span>)}</div> : <p>{copy}</p>}<a className="text-link" href={`${contactHref}?subject=${encodeURIComponent(title + ' admission enquiry')}`}>Discuss {title} →</a></article>)}</div></div></section>; }
 export function AdmissionRoutes() { return <section id="admission-routes" className="bg-white"><div className="content-wrap"><h2>Understand MBBS admission routes.</h2><p className="section-copy">MBBS admission in India is not a single counselling process. The route available to a student can depend on NEET eligibility and rank, domicile, category, the type of institution, the counselling authority and the rules for the current academic year. JNEX Education helps students and parents compare these routes before making a preference or payment decision.</p><div className="discovery-grid">{admissionRoutes.map(([title, copy]) => <article className="discovery-card icon-card" key={title}><TopicIcon title={title} /><h3>{title}</h3><p>{copy}</p></article>)}</div><div className="section-actions"><a href="/private-mbbs-admission/" className="text-link">Private MBBS →</a><a href="/deemed-university-mbbs/" className="text-link">Deemed Universities →</a><a href="/nri-quota-mbbs/" className="text-link">NRI Quota →</a></div></div></section>; }
 function QuickLinks({ links }) {
  return <section className="bg-white quick-links-section"><div className="content-wrap"><div className="quick-links">{links.map(([Icon, title, copy, href]) => <a className="quick-link" href={href} key={title}><span className="icon-badge" aria-hidden="true"><Icon strokeWidth={1.7} /></span><span><strong>{title}</strong><small>{copy}</small></span><ArrowRight size={18} aria-hidden="true" /></a>)}</div></div></section>;
 }
-const studyDestinations = ['UK', 'USA', 'Canada', 'Australia', 'New Zealand', 'Germany', 'France', 'Ireland', 'Italy', 'Singapore', 'UAE'];
-function StudyDestinations() {
- return <section id="destinations" className="bg-slate-50 section-decor"><div className="content-wrap"><p className="eyebrow">POPULAR DESTINATIONS</p><h2>Where would you like to study?</h2><p className="section-copy">Compare universities, programs, costs, scholarships and visa requirements country by country before you apply.</p><div className="destination-grid">{studyDestinations.map(country => <a className="destination-tile" key={country} href={`${contactHref}?subject=${encodeURIComponent('Study in ' + country + ' enquiry')}`}><Flag country={country} className="destination-flag" /><span>{country}</span><ArrowRight size={16} aria-hidden="true" /></a>)}</div></div></section>;
-}
 export default function PageContent({ path }) {
  if (path === '/mbbs-admission/') return <><PanIndia full /><AdmissionRoutes /><ProfileConversion /><CollegeExplorer /><CostComparison /><LiveCounsellingHub /><Checklist /><FAQ /></>;
  if (path === '/medical-admissions/') return <><QuickLinks links={[[Stethoscope, 'MBBS in India', 'State and All India counselling routes', '/mbbs-admission/'], [ClipboardCheck, 'NEET Counselling', 'From result to college joining', '/neet-ug-counselling/'], [Globe, 'MBBS Abroad', 'Compare 14 medical destinations', '/mbbs-abroad/']]} /><MedicalPathways /></>;
- if (path === '/india-admissions/') return <><section className="bg-slate-50"><div className="content-wrap split-feature"><div><p className="eyebrow">ENGINEERING DIRECTORY</p><h2>Start with institutions, then compare your course.</h2><p className="section-copy">Explore the supplied national, Karnataka, Maharashtra and Tamil Nadu engineering directories. Compare locations and institution references before discussing branches, entry routes and complete costs.</p><ul className="state-chips">{['Karnataka', 'Maharashtra', 'Tamil Nadu'].map(name => <li key={name}><StateShape name={name} className="state-card-shape" />{name}</li>)}<li><Globe size={20} strokeWidth={1.6} aria-hidden="true" />All India</li></ul><a className="primary-button mt-6" href="/india-admissions/engineering/">Explore engineering institutions →</a></div><figure className="split-photo"><img src="/images/intro/campus-courtyard.webp" alt="" loading="lazy" width="1536" height="1024" /><figcaption>Illustrative campus image</figcaption></figure></div></section><Portfolio items={india} /></>;
+ if (path === '/india-admissions/') return <><section className="bg-slate-50"><div className="content-wrap split-feature"><div><p className="eyebrow">ENGINEERING DIRECTORY</p><h2>Start with institutions, then compare your course.</h2><p className="section-copy">Explore the supplied national, Karnataka, Maharashtra and Tamil Nadu engineering directories. Compare locations and institution references before discussing branches, entry routes and complete costs.</p><ul className="state-chips">{['Karnataka', 'Maharashtra', 'Tamil Nadu'].map(name => <li key={name}><StateShape name={name} className="state-card-shape" />{name}</li>)}<li><Globe size={20} strokeWidth={1.6} aria-hidden="true" />All India</li></ul><a className="primary-button mt-6" href="/india-admissions/engineering/">Explore engineering institutions →</a></div><figure className="split-photo"><img src="/images/page-intros/india-directory-feature.webp" alt="" loading="lazy" width="1536" height="1024" /><figcaption>Illustrative campus image</figcaption></figure></div></section><Portfolio items={india} /></>;
  if (path === '/india-admissions/engineering/') return <EngineeringDirectory />;
  if (path === '/resources/') return <ResourceLibrary />;
- if (path === '/study-abroad/') return <><StudyDestinations /><Portfolio items={abroad} /><section className="bg-slate-50"><div className="content-wrap"><h2>Considering medical study overseas?</h2><p className="section-copy">Explore a separate directory of 14 medical destinations, with typical course structures, supplied budget references and licensing questions.</p><a className="primary-button mt-6" href="/mbbs-abroad/">Explore medical study abroad →</a></div></section></>;
+ if (path === '/study-abroad/') return <><StudyAbroadExplorer /><Portfolio items={abroad} /><section className="bg-slate-50"><div className="content-wrap"><h2>Considering medical study overseas?</h2><p className="section-copy">Explore a separate directory of 14 medical destinations, with typical course structures, supplied budget references and licensing questions.</p><a className="primary-button mt-6" href="/mbbs-abroad/">Explore medical study abroad →</a></div></section></>;
  if (path === '/scholarships/') return <><section className="bg-white"><div className="content-wrap"><h2>Explore funding opportunities.</h2><p className="section-copy">Compare eligibility, award coverage, application requirements and deadlines with the relevant scholarship provider before applying.</p><div className="funding-tags">{scholarships.map(x => <a href={`${contactHref}?subject=${encodeURIComponent(x + ' scholarship enquiry')}`} key={x}><TopicIcon title={x} className="tag-icon" size={16} />{x}</a>)}</div></div></section><MaharashtraFunding /></>;
  if (path === '/services/') return <section className="bg-white section-decor"><div className="content-wrap"><p className="eyebrow">WHAT WE HELP WITH</p><h2>Admission support, end to end.</h2><div className="service-grid">{services.map(x => <a className="service-card" href={`${contactHref}?subject=${encodeURIComponent(x + ' enquiry')}`} key={x}><TopicIcon title={x} /><span>{x}</span><ArrowRight size={16} aria-hidden="true" /></a>)}</div><CounsellingRoadmap /></div></section>;
  if (path === '/neet-ug-counselling/') return <><CounsellingRoadmap /><AdmissionRoutes /><Checklist /><LiveCounsellingHub /></>;

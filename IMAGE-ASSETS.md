@@ -33,9 +33,43 @@ Images are local, lazy-loaded, dimensioned to reserve layout space, and have des
 | Local file | Placement | Source |
 |---|---|---|
 | images/hero/slide-1…4-desktop.webp, slide-1…4-mobile.webp | Homepage hero slider (desktop ≥768px for slide 1, ≥1024px for slides 2–4) | Client-supplied artwork (`hero slides reference + images`, slide 1 = existing hero), converted to WebP |
-| images/intro/*.webp | Internal page intro backdrops | WebP copies of campus-india.png, campus-courtyard.png, counselling-family.png |
+| images/page-intros/*.webp | Internal page intro backdrops | Route-specific optimized WebP files made from local approved artwork and supplied resource imagery |
 | images/thumbs/*.webp | Resource card poster thumbnails | Top crops of the supplied state/abroad posters in public/resources |
 | images/flags/gb, us, ca, au, de, ie, nz, fr, it, sg, ae .svg | Study abroad flags | flag-icons (MIT), same source as the existing flags |
 | src/data/state-shapes.js | State outline icons | Simplified from @svg-maps/india (CC BY 4.0, credited in the footer). Jammu & Kashmir, Ladakh and small UTs are intentionally not drawn; they use a map pin. |
 
 College crests are generated monogram shields, not official college logos. Replace them with supplied logos when available.
+
+## Mobile hero correction (2026-09-19)
+
+Slides 2–4 now use `images/hero/slide-{2,3,4}-mobile-v2.webp` below 768px.
+Tablet and desktop use the existing desktop artwork; slide 1's artwork and content are preserved.
+Built-in ImageGen created these illustrative scenes from the supplied desktop references and
+`mobile image brief/JNEX-mobile-hero-image-brief.xlsx`. Original PNGs and exact generation
+prompts are saved outside this checkout in `../mobile image brief/generated/`.
+
+The final PNGs and WebP exports are exactly 1080 × 3840, with embedded sRGB profiles.
+Each PNG is under 5 MB. After ImageGen returned smaller canvases, the user explicitly
+approved standard image processing: proportional scaling plus dark sky/ground extension,
+with smooth fades restricted to the sky and ground. People are never stretched or cropped.
+The final delivery PNGs are `../mobile image brief/generated/slide-{2,3,4}-mobile.png`.
+After the mobile screenshot review, the photo-only spacer was removed. The artwork now
+covers the mobile hero behind the live copy, form, features, and restored pathway card,
+matching slide 1's content structure. Cover framing can crop the artwork at some widths;
+it never stretches it. Mobile photo zoom is disabled. The original files remain for rollback.
+
+Validation: production build and all 31 prerendered routes succeeded. The new image URLs
+are checked locally. Browser visual verification was unavailable in this session.
+
+## Internal page imagery refresh (2026-09-19)
+
+The repeated internal-page intro backdrops were replaced with route-specific files in
+`public/images/page-intros/`. `src/pages.jsx` now maps each top-level internal route and
+each published state guide to its own WebP file, and the India admissions split image now
+uses `images/page-intros/india-directory-feature.webp` instead of the old shared
+`images/intro/campus-courtyard.webp` image.
+
+These page-intro files are optimized local WebP derivatives made from approved local site
+assets, supplied resource posters, and the generated hero artwork. They are decorative,
+aria-hidden page backdrops and should be replaced with final client-supplied photography
+when available.
