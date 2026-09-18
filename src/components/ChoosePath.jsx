@@ -1,5 +1,6 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, MapPinned, Route, Globe2, Stethoscope } from 'lucide-react';
 
+const pathIcons = [MapPinned, Route, Globe2, Stethoscope];
 const paths = [
   {
     title: 'MBBS IN INDIA',
@@ -41,13 +42,14 @@ const ChoosePath = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {paths.map((path) => (
+          {paths.map((path, index) => (
             <a
               key={path.title}
               href={path.href}
-              className="group flex flex-col justify-between p-8 bg-white rounded-2xl border border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all"
+              className="path-visual-card group flex flex-col justify-between p-8 bg-white rounded-2xl border border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all"
             >
               <div>
+                <span className="path-icon" aria-hidden="true">{(() => { const Icon = pathIcons[index]; return <Icon size={38} strokeWidth={1.5} />; })()}</span>
                 <h3 className="font-bold text-lg text-primary mb-2.5">
                   {path.title}
                 </h3>

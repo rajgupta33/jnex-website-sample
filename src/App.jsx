@@ -37,7 +37,6 @@ function App({ path = typeof window !== 'undefined' ? window.location.pathname.r
         <ProfileConversion initialProfile={profile} />
         <WhyJnex />
         <CollegeExplorer />
-        <PanIndia editorial />
         <SmartComparison />
         <CounsellingRoadmap />
         <LiveCounsellingHub />

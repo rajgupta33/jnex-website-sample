@@ -1,3 +1,5 @@
+import { TrendingUp, Wallet, MapPinned, Route } from 'lucide-react';
+const pointIcons = [TrendingUp, Wallet, MapPinned, Route];
 const points = [
   {
     title: 'RANK',
@@ -31,8 +33,9 @@ const WhyJnex = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {points.map((point) => (
+          {points.map((point, index) => (
             <div key={point.title} className="border-t-2 border-primary pt-6">
+              <span className="decision-icon" aria-hidden="true">{(() => { const Icon = pointIcons[index]; return <Icon size={30} strokeWidth={1.5} />; })()}</span>
               <h3 className="text-lg font-bold text-primary mb-2 tracking-wide">
                 {point.title}
               </h3>

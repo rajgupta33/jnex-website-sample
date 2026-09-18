@@ -125,7 +125,8 @@ const ProfileConversion = ({ initialProfile }) => {
                         </button>
                       )}
                     </div>
-                    <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                    <ol className="profile-journey" aria-label="Admission profile progress">{["Score", "State", "Category", "Budget", "Pathway"].map((label, index) => <li key={label} className={index + 1 < step ? "complete" : index + 1 === step ? "current" : ""} aria-current={index + 1 === step ? "step" : undefined}><span>{index + 1 < step ? <CheckCircle2 size={18} aria-hidden="true" /> : index + 1}</span><small>{label}</small></li>)}</ol>
+                    <div className="sr-only">
                       <div
                         className="bg-accent h-full transition-all duration-300 ease-out"
                         style={{ width: `${(step / 5) * 100}%` }}

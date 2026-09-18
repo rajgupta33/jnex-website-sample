@@ -411,3 +411,34 @@ header .nav-dropdown { max-height: calc(100dvh - 160px); overflow-y: auto; }
   .contact-number { padding: 12px; gap: 14px; font-size: 12px; }
   .reference-table th, .reference-table td { padding: 12px 15px; }
 }
+/* Visual hierarchy: quiet mint accents support navy and gold. */
+#counselling { background: radial-gradient(ellipse at 75% 45%, #dff3e7, #f2faf5 35%, #f8fafc 75%); }
+#colleges { background: radial-gradient(ellipse at 0 20%, #e8f6ed, #f8fafc 55%); }
+#abroad { background: radial-gradient(ellipse at 90% 0, #e0f2e9, #f4f8f7 60%); }
+.hero-snapshot { box-shadow: 0 0 65px -20px #67bf9570; }
+.path-icon { display: grid; place-items: center; width: 84px; height: 84px; margin-bottom: 28px; border-radius: 22px; background: #f0f7f3; color: #173c33; transition: background .2s; }
+.path-visual-card { transition: transform .2s, box-shadow .2s; }
+.path-visual-card:hover { transform: translateY(-4px); }
+.path-visual-card:hover .path-icon { background: #dff0e6; }
+.decision-icon { display: block; color: #957330; margin-bottom: 18px; }
+.college-identity { display: flex; align-items: flex-start; gap: 14px; }
+.college-identity > div { min-width: 0; }
+.college-monogram { width: 54px; height: 54px; flex: 0 0 54px; display: grid; place-items: center; background: #edf6f0; border: 1px solid #d8e7de; border-radius: 14px; color: #254d40; font-size: 15px; font-weight: 800; letter-spacing: .04em; }
+.college-identity h3 { font-size: 18px; }
+.college-identity p { margin-top: 5px; font-size: 12px; }
+.college-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.college-chips span { background: #f3f5f8; color: #526075; padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 650; }
+.destination-identity { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+.country-flag { width: 56px; height: 40px; object-fit: contain; filter: drop-shadow(0 2px 3px #15233e12); }
+.profile-journey { display: flex; margin-top: 20px; }
+.profile-journey li { flex: 1; position: relative; text-align: center; color: #64748b; }
+.profile-journey li:not(:last-child)::after { content: ''; position: absolute; height: 2px; background: #e2e8f0; top: 16px; left: calc(50% + 18px); width: calc(100% - 36px); }
+.profile-journey li.complete::after { background: #6ca487; }
+.profile-journey li > span { display: grid; place-items: center; height: 34px; width: 34px; border-radius: 50%; border: 1px solid #dfe5e9; margin: 0 auto 8px; background: #f8fafc; font-size: 12px; font-weight: 700; }
+.profile-journey .current > span { background: #f3cd70; border-color: #d7af4a; color: #172337; box-shadow: 0 0 0 4px #f8eac4; }
+.profile-journey .complete > span { background: #e5f2e9; color: #327550; border-color: #a6cbb4; }
+.profile-journey small { font-size: 10px; font-weight: 650; }
+.state-card-name { flex: 1; }
+.discovery-card { transition: box-shadow .2s, border-color .2s; }
+.discovery-card:hover { border-color: #b6cfc0; box-shadow: 0 12px 30px -22px #173c3350; }
+@media (prefers-reduced-motion: reduce) { .path-visual-card:hover { transform: none; } }
