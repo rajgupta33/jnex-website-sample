@@ -132,12 +132,15 @@ const pathwaySlides = [
 
 const categoryHref = Object.fromEntries(pathwaySlides[2].items.map(item => [item.label, item.href]));
 
+// Mobile artwork revision per slide; slide 4 has the 6:5 band artwork, 2–3 still use the tall v2 crops.
+const mobileVersion = { 'slide-1': '', 'slide-2': '-v2', 'slide-3': '-v2', 'slide-4': '-v3' };
+
 function HeroMedia({ image }) {
   return (
     <div className="hero-media" aria-hidden="true">
       <picture>
         <source media="(min-width: 768px)" srcSet={`/images/hero/${image}-desktop.webp`} />
-        <img src={`/images/hero/${image}-mobile${image === 'slide-1' ? '' : '-v2'}.webp`} alt="" decoding="async" fetchPriority={image === 'slide-1' ? 'high' : 'low'} />
+        <img src={`/images/hero/${image}-mobile${mobileVersion[image]}.webp`} alt="" decoding="async" fetchPriority={image === 'slide-1' ? 'high' : 'low'} />
       </picture>
       {image === 'slide-1' ? <>
         <div className="absolute inset-0 bg-gradient-to-r from-[#020617]/95 via-[#020617]/80 to-transparent md:to-[#020617]/40"></div>

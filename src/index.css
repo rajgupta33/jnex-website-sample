@@ -511,13 +511,13 @@ header .nav-dropdown { max-height: calc(100dvh - 160px); overflow-y: auto; }
 /* Phones, slides 2–4: the artwork is a band at the top so each slide's visual is in the first screen;
    the heading overlaps its fade, then the form, features and a compact pathway card follow. */
 @media (max-width:767px) {
-  .hero-slide:not(.slide-medical) { --hero-bg: #020617; --band: 330px; }
-  /* The slides share slide 1's height; the artwork band flexes to absorb the spare height so the
-     slider controls sit directly under the pathway card. */
+  .hero-slide:not(.slide-medical) { --hero-bg: #020617; }
+  /* The slides share slide 1's height; the artwork band keeps a fixed 6:5 shape and any spare
+     height goes below the content instead of stretching the artwork. */
   .hero-slide:not(.slide-medical) { flex-direction: column; }
-  .hero-slide:not(.slide-medical) .hero-media { position: relative; inset: auto; flex: 1 0 var(--band); }
+  .hero-slide:not(.slide-medical) .hero-media { position: relative; inset: auto; flex: none; aspect-ratio: 6 / 5; }
   .hero-slide:not(.slide-medical) .hero-slide-inner {
-    flex: none;
+    flex: 1 0 auto;
     align-items: flex-start;
     margin-top: -64px;
     padding: 0 0 92px;
@@ -534,9 +534,9 @@ header .nav-dropdown { max-height: calc(100dvh - 160px); overflow-y: auto; }
   }
   .slide-engineering { --band-pos: 36% 63%; }
   .slide-study-abroad { --band-pos: 50% 61%; }
-  .slide-india-admissions { --band-pos: 62% 70%; }
+  .slide-india-admissions { --band-pos: center top; }
   .hero-slide:not(.slide-medical) .hero-shade {
-    background: linear-gradient(180deg, #02061759 0, #02061700 70px, #02061700 calc(100% - 170px), #020617e6 calc(100% - 40px), #020617 100%);
+    background: linear-gradient(180deg, #02061759 0, #02061700 70px, #02061700 60%, #020617e6 90%, #020617 100%);
   }
   .hero-slide:not(.slide-medical) .hero-copy { max-width: none; }
   .hero-slide:not(.slide-medical) .hero-copy > .inline-flex { margin-bottom: 12px; }
