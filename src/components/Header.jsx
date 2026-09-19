@@ -4,7 +4,7 @@ import Brand from './Brand';
 import { CURRENT_YEAR } from '../data/admissions';
 import { contactHref, track } from '../data/config';
 export const navigation = {
-  'Medical Admissions': [['MBBS India', '/mbbs-admission/'], ['NEET Counselling', '/neet-ug-counselling/'], ['MBBS Abroad', '/mbbs-abroad/'], ...['BDS', 'AYUSH', 'Nursing', 'Physiotherapy', 'Pharmacy', 'Allied Health', 'Paramedical', 'Veterinary', 'Research'].map(name => [name, '/medical-admissions/#' + name.toLowerCase().replaceAll(' ', '-')])],
+  'Medical Admissions': [['MBBS India', '/mbbs-admission/'], ['NEET Counselling', '/neet-ug-counselling/'], ['MBBS Abroad', '/mbbs-abroad/'], ['MBBS in Nepal', '/mbbs-abroad/nepal/'], ...['BDS', 'AYUSH', 'Nursing', 'Physiotherapy', 'Pharmacy', 'Allied Health', 'Paramedical', 'Veterinary', 'Research'].map(name => [name, '/medical-admissions/#' + name.toLowerCase().replaceAll(' ', '-')])],
   'India Admissions': ['Engineering & Technology', 'Computer & IT', 'Management & Business', "Bachelor’s", "Master’s", 'Professional Courses'].map(name => [name, name === 'Engineering & Technology' ? '/india-admissions/engineering/' : '/india-admissions/']),
   'Study Abroad': [...["Bachelor’s", "Master’s", 'MBA', 'Engineering', 'IT', 'Business', 'Healthcare'].map(name => [name, '/study-abroad/']), ['Destinations', '/study-abroad/#destinations'], ['University Directory', '/study-abroad/#universities']],
   'Resources': [['Medical Colleges', '/medical-colleges/'], ['College Predictor', '/tools/neet-college-predictor/'], ['Compare Colleges', '/compare-medical-colleges/'], ['Counselling Tracker', '/neet-counselling-tracker/'], ['College Fee References', '/medical-colleges/'], ['Guides & Downloads', '/resources/'], ['FAQs', '/#faqs']],

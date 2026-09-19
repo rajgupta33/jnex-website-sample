@@ -750,3 +750,138 @@ main > section.quick-links-section { padding-block: clamp(36px,4vw,56px) 0; }
   .state-card-shape { width: 30px; height: 30px; }
   .table-college { gap: 8px; }
 }
+
+/* MBBS abroad: medical university directory, destination counts and the Nepal spotlight / college explorer. */
+.destination-count { margin-top: -4px; color: #5d6a7b; font-size: 13px; }
+.destination-count strong { color: #916514; font-size: 15px; }
+.medical-country-banner .country-budget { margin-top: 12px; color: #c2cddd; font-size: 13px; }
+.medical-country-banner .country-budget strong { color: #f3d488; }
+.country-banner-actions { display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
+.banner-secondary { display: inline-flex; justify-content: center; align-items: center; min-height: 44px; padding: 10px 18px; border-radius: 11px; border: 1px solid #ffffff40; color: #fff; font-size: 13px; font-weight: 650; text-align: center; transition: background .2s, border-color .2s; }
+.banner-secondary:hover { background: #ffffff14; border-color: #e3c585; }
+.tag-filter { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag-filter button { min-height: 40px; padding: 8px 14px; border-radius: 999px; border: 1px solid #dfe3e8; background: #fff; color: #172337; font-size: 13px; font-weight: 600; transition: border-color .2s, background .2s, color .2s; }
+.tag-filter button:hover { border-color: #d6b46b; }
+.tag-filter button[aria-pressed=true] { background: #13233b; border-color: #13233b; color: #fff; }
+.college-chips span.chip-fee { background: #faf3e2; color: #7c5c1e; }
+
+.nepal-spotlight { position: relative; display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,.85fr); gap: clamp(24px,4vw,56px); align-items: center; margin-top: 40px; padding: clamp(24px,4vw,44px); overflow: hidden; border-radius: 22px; border: 1px solid #d6b46b55; color: #fff; background: radial-gradient(ellipse 60% 90% at 100% 0%, #d6b46b2e, transparent 60%), linear-gradient(120deg,#0b1729 0%,#12233d 100%); box-shadow: 0 30px 60px -38px #0b1729cc; isolation: isolate; }
+.nepal-spotlight::after { content: ''; position: absolute; right: -40px; bottom: -60px; z-index: -1; width: 320px; height: 320px; background: url('/images/flags/np.svg') center / contain no-repeat; opacity: .06; transform: rotate(-8deg); }
+.nepal-spotlight .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: #e3c585; }
+.nepal-spotlight .eyebrow img { width: 16px; height: auto; }
+.nepal-spotlight h3 { font-size: clamp(24px,2.6vw,34px); font-weight: 800; line-height: 1.2; }
+.nepal-spotlight-copy > p:not(.eyebrow) { margin-top: 14px; color: #c2cddd; font-size: 15px; line-height: 1.8; max-width: 560px; }
+.spotlight-stats { display: flex; flex-wrap: wrap; gap: 12px 32px; margin: 24px 0 28px; }
+.spotlight-stats li { display: flex; flex-direction: column; }
+.spotlight-stats strong { color: #f3d488; font-size: clamp(22px,2.4vw,30px); font-weight: 800; line-height: 1.1; }
+.spotlight-stats span { color: #9fb0c6; font-size: 12px; margin-top: 4px; }
+.spotlight-colleges { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+.spotlight-colleges a { display: flex; align-items: center; gap: 12px; min-width: 0; padding: 12px; border-radius: 14px; border: 1px solid #ffffff1f; background: #ffffff0d; transition: background .2s, border-color .2s, transform .2s; }
+.spotlight-colleges a:hover { background: #ffffff17; border-color: #d6b46b88; transform: translateY(-2px); }
+.spotlight-colleges span { display: flex; flex-direction: column; min-width: 0; }
+.spotlight-colleges strong { font-size: 14px; }
+.spotlight-colleges small { color: #aebbd0; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.intro-nepal { display: grid; justify-items: center; gap: 14px; }
+.intro-nepal img { width: 110px; height: auto; filter: drop-shadow(0 16px 30px #0009); animation: intro-float 7s ease-in-out infinite; }
+.intro-nepal span { color: #e3c585; font-size: 12px; font-weight: 750; letter-spacing: .2em; text-transform: uppercase; }
+
+.nepal-stat-strip { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin-bottom: clamp(40px,6vw,72px); border: 1px solid #e6d9be; border-radius: 18px; background: linear-gradient(120deg,#fffdf8,#f7f1e3); overflow: hidden; }
+.nepal-stat-strip li { display: flex; flex-direction: column; gap: 6px; padding: clamp(18px,2.5vw,28px); }
+.nepal-stat-strip li + li { border-left: 1px solid #e6d9be; }
+.nepal-stat-strip strong { color: #13233b; font-size: clamp(26px,3vw,38px); font-weight: 800; line-height: 1; }
+.nepal-stat-strip span { color: #6a5a3a; font-size: 13px; line-height: 1.5; }
+.nepal-reasons { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 18px; margin-top: 32px; }
+.nepal-reasons article { padding: 24px; border: 1px solid #dfe3e8; border-radius: 16px; background: #fff; }
+.nepal-reasons h3 { margin-top: 16px; font-size: 17px; font-weight: 700; color: #172337; }
+.nepal-reasons p { margin-top: 8px; color: #596678; font-size: 14px; line-height: 1.75; }
+
+.eligibility-routes { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; margin-top: 30px; }
+.eligibility-routes article { position: relative; padding: clamp(22px,3vw,32px); border-radius: 18px; border: 1px solid #dfe3e8; background: #fff; }
+.eligibility-routes .route-direct { border-color: #d6b46b; box-shadow: 0 20px 40px -32px #916514aa; }
+.route-badge { display: inline-block; padding: 4px 10px; border-radius: 999px; background: #13233b; color: #f3d488; font-size: 11px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+.eligibility-routes h3 { margin-top: 14px; font-size: 21px; font-weight: 750; line-height: 1.35; color: #172337; }
+.eligibility-routes p { margin-top: 10px; color: #596678; font-size: 14px; line-height: 1.8; }
+.eligibility-routes ul { display: grid; gap: 8px; margin-top: 16px; }
+.eligibility-routes li { display: flex; align-items: center; gap: 8px; color: #33415a; font-size: 14px; font-weight: 600; }
+.eligibility-routes li svg { flex-shrink: 0; color: #b08a3e; }
+
+.nepal-tools .state-search { flex: 1 1 260px; }
+.nepal-college-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; margin-top: 18px; }
+.nepal-college-card { display: flex; flex-direction: column; gap: 14px; min-width: 0; padding: 22px; border-radius: 18px; border: 1px solid #e3e6ea; background: #fff; scroll-margin-top: 110px; transition: transform .25s, border-color .25s, box-shadow .25s; }
+.nepal-college-card:hover, .nepal-college-card:target { transform: translateY(-2px); border-color: #d6b46b; box-shadow: 0 18px 36px -26px #15233e77; }
+.nepal-college-head { display: flex; align-items: flex-start; gap: 14px; }
+.nepal-college-head > div { min-width: 0; }
+.nepal-college-card h3 { color: #172337; font-size: 16px; font-weight: 750; line-height: 1.4; }
+.nepal-college-head p { display: flex; align-items: center; gap: 5px; margin-top: 4px; color: #5d6a7b; font-size: 12.5px; }
+.nepal-college-head p svg { flex-shrink: 0; color: #b69a5e; }
+.nepal-college-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.nepal-college-tags span { display: inline-flex; align-items: center; gap: 5px; padding: 4px 9px; border-radius: 6px; font-size: 11px; font-weight: 700; }
+.nepal-college-tags .affiliation { background: #13233b; color: #f3d488; }
+.nepal-college-tags .seats { background: #f3f5f8; color: #43506a; }
+.nepal-college-tags .inclusive { background: #ecf6ef; color: #2f6a45; }
+.nepal-fee { display: flex; flex-direction: column; padding: 14px 16px; border-radius: 12px; background: linear-gradient(120deg,#fffaf0,#f7efdc); border: 1px solid #eadcbc; }
+.nepal-fee small { color: #7c6a45; font-size: 11px; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; }
+.nepal-fee strong { margin-top: 4px; color: #13233b; font-size: 26px; font-weight: 800; line-height: 1.2; }
+.nepal-fee em { margin-top: 2px; color: #6d6150; font-size: 12px; font-style: normal; }
+.instalment-bar { display: flex; gap: 3px; height: 38px; border-radius: 9px; overflow: hidden; }
+.instalment-bar span { display: flex; flex-direction: column; justify-content: center; min-width: 0; padding: 0 8px; color: #fff; font-size: 11px; font-weight: 650; line-height: 1.2; white-space: nowrap; overflow: hidden; }
+.instalment-bar b { font-size: 9px; font-weight: 700; letter-spacing: .08em; opacity: .75; }
+.instalment-bar .tone-0 { background: #13233b; }
+.instalment-bar .tone-1 { background: #2b3f5e; }
+.instalment-bar .tone-2 { background: #8a6a2c; }
+.instalment-bar .tone-3 { background: #b08a3e; }
+.instalment-bar .tone-4 { background: #c9a55c; color: #1b2436; }
+.nepal-fee-note { color: #695638; font-size: 12px; line-height: 1.7; }
+.nepal-living { display: flex; align-items: flex-start; gap: 8px; color: #43506a; font-size: 13px; line-height: 1.6; }
+.nepal-living svg { flex-shrink: 0; margin-top: 2px; color: #b08a3e; }
+.nepal-college-card .text-link { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 4px; }
+
+.nepal-process { display: grid; grid-template-columns: minmax(0,1.3fr) minmax(0,.7fr); gap: clamp(28px,5vw,64px); align-items: start; }
+.nepal-steps { display: grid; gap: 4px; margin-top: 28px; }
+.nepal-steps li { position: relative; display: grid; grid-template-columns: 52px minmax(0,1fr); gap: 18px; padding-bottom: 24px; }
+.nepal-steps li:not(:last-child)::before { content: ''; position: absolute; left: 25px; top: 52px; bottom: 0; width: 2px; background: linear-gradient(#d6b46b,#d6b46b33); }
+.nepal-steps li > span { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: #13233b; color: #f3d488; font-size: 15px; font-weight: 800; box-shadow: 0 0 0 5px #f7f1e3; }
+.nepal-steps h3 { margin-top: 4px; color: #172337; font-size: 18px; font-weight: 750; }
+.nepal-steps p { margin-top: 6px; color: #596678; font-size: 14px; line-height: 1.8; }
+.nepal-documents { position: sticky; top: 110px; padding: 28px; border-radius: 18px; background: #fff; border: 1px solid #e6d9be; box-shadow: 0 24px 48px -36px #0b172999; }
+.nepal-documents > svg { color: #b08a3e; }
+.nepal-documents h3 { margin-top: 12px; font-size: 20px; font-weight: 750; color: #172337; }
+.nepal-documents ul { display: grid; gap: 10px; margin: 18px 0 24px; }
+.nepal-documents li { display: flex; align-items: center; gap: 10px; color: #33415a; font-size: 14px; }
+.nepal-documents li svg { flex-shrink: 0; color: #2f6a45; }
+.nepal-documents .primary-button { width: 100%; gap: 8px; }
+.nepal-cautions { margin-top: 0; }
+.nepal-cautions h3 { display: flex; align-items: center; gap: 10px; }
+.nepal-cautions h3 svg { color: #916514; flex-shrink: 0; }
+.nepal-cautions ul { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; margin-top: 18px; }
+.nepal-cautions li { display: flex; gap: 10px; color: #5d6574; font-size: 14px; line-height: 1.75; }
+.nepal-cautions li svg { flex-shrink: 0; margin-top: 4px; color: #b07a1e; }
+.nepal-cautions strong { color: #33291a; }
+
+@media (max-width:1023px) {
+  .nepal-spotlight, .nepal-process { grid-template-columns: minmax(0,1fr); }
+  .nepal-reasons { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .nepal-college-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .nepal-stat-strip { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .nepal-stat-strip li:nth-child(3) { border-left: 0; }
+  .nepal-stat-strip li:nth-child(n+3) { border-top: 1px solid #e6d9be; }
+  .nepal-cautions ul { grid-template-columns: minmax(0,1fr); }
+  .nepal-documents { position: static; }
+  .country-banner-actions { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; }
+}
+@media (max-width:639px) {
+  .nepal-reasons, .nepal-college-grid, .eligibility-routes { grid-template-columns: minmax(0,1fr); }
+  .spotlight-colleges { grid-template-columns: minmax(0,1fr); }
+  .nepal-college-card { padding: 18px; }
+  .nepal-fee strong { font-size: 23px; }
+  .country-banner-actions { flex-direction: column; }
+  .tag-filter { flex-wrap: nowrap; overflow-x: auto; margin-inline: -16px; padding: 2px 16px 6px; scrollbar-width: none; }
+  .tag-filter::-webkit-scrollbar { display: none; }
+  .tag-filter button { flex-shrink: 0; }
+  .nepal-tools .region-select, .nepal-tools .region-select select { width: 100%; }
+  .nepal-steps li { grid-template-columns: 44px minmax(0,1fr); gap: 14px; }
+  .nepal-steps li > span { width: 44px; height: 44px; font-size: 13px; }
+  .nepal-steps li:not(:last-child)::before { left: 21px; top: 44px; }
+}
+.nepal-process h2, #nepal-faqs h2 { font-size: clamp(28px, 3.3vw, 46px); line-height: 1.15; font-weight: 800; color: #0b1729; }
