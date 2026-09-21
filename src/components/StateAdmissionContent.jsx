@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
-import { referenceFiles, referenceNote, contentReviewDate } from '../data/addition-content';
+import { referenceFiles, referenceNote, contentReviewDate, collegeRecords } from '../data/addition-content';
+import { indiaDirectorySource } from '../data/india-medical-colleges';
 import { stateFeeReferences } from '../data/state-fee-references';
 import CollegeExplorer from './CollegeExplorer';
 import ProfileConversion from './ProfileConversion';
@@ -43,4 +44,24 @@ export function MaharashtraFunding() {
     <div className="discovery-grid">{[['Check eligibility', 'Confirm domicile, category, income, institution type, admission route and the scheme’s current conditions.'], ['Understand coverage', 'Distinguish tuition and examination support from hostel, mess, deposits and other charges. Ask whether you must pay upfront and claim reimbursement.'], ['Prepare an application', 'Check income/category/domicile documents, allotment proof, bank details, college verification and renewal conditions. Track your application through the provider.']].map(([title, copy], index) => <article className="discovery-card icon-card" key={title}><span className="icon-badge" aria-hidden="true">{[<BadgeCheck key="e" strokeWidth={1.7} />, <Wallet key="c" strokeWidth={1.7} />, <FileText key="a" strokeWidth={1.7} />][index]}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
     <div className="section-actions"><a className="primary-button" href="https://mahadbt.maharashtra.gov.in/">Explore official MahaDBT schemes ↗</a><a className="text-link" href="/mbbs-admission/maharashtra/">Back to Maharashtra MBBS planning</a></div><p className="data-note">No blanket “free MBBS” eligibility or guaranteed reimbursement is claimed. Verify current scheme details and college implementation before making a payment decision.</p>
   </div></section>;
+}
+
+// State/UT page for places without a detailed JNEX planning guide: the college list plus general route checks.
+export function StateDirectoryContent({ name, recordName }) {
+  const records = collegeRecords.filter(record => record.state === recordName);
+  const counts = ['Government', 'Private', 'Deemed'].map(type => [type, records.filter(record => record.management === type).length]).filter(([, count]) => count);
+  const sections = [
+    ['counselling-routes', 'COUNSELLING ROUTES', 'Know which application you need.', `Government and private seats in ${name} are generally filled through the state/UT counselling authority, while All India Quota, central institutions and deemed universities follow MCC counselling. Check the current bulletin for the exact route of each seat.`, 'https://mcc.nic.in/ug-medical-counselling/', 'MCC counselling notices ↗'],
+    ['state-eligibility', 'ELIGIBILITY', 'Check your exact seat category.', 'Review NEET eligibility and AIR, domicile or schooling requirements, category documents and the rules for the seat you are considering. A college appearing in this list does not establish that you are eligible for its state quota seats.', '/mbbs-admission/#admission-routes', 'Compare admission routes →'],
+    ['state-documents', 'DOCUMENTS & REPORTING', 'Prepare before choice filling.', 'Organise your NEET admit card/scorecard, identity documents, Class 10/12 records and relevant domicile, category or quota documents. Check registration payment, choice locking, reporting instructions and refund conditions in the current bulletin.', '/tools/counselling-checklist/', 'Use the counselling checklist →'],
+  ];
+  return <><section className="bg-white section-decor state-plan-section"><StateShape name={name} className="section-state-watermark" /><div className="content-wrap">
+    <p className="eyebrow">MBBS IN {name.toUpperCase()}</p><h2>{records.length ? `${records.length} MBBS colleges to explore in ${name}.` : `Plan MBBS options from ${name}.`}</h2>
+    <p className="section-copy">{records.length ? `The list below covers ${records.length} college record${records.length === 1 ? '' : 's'} (${counts.map(([type, count]) => `${count} ${type.toLowerCase()}`).join(', ')}) from the supplied state college list and fee workbook. Compare each college’s location, seats and admission route, then confirm current details with the counselling authority.` : `The supplied college lists do not include an MBBS college in ${name}. Students from ${name} can explore All India Quota, central institutions, deemed universities and other states’ open seats, subject to eligibility.`}</p>
+    <div className="reference-tabs"><a href="#colleges">College list</a><a href="#counselling-routes">Routes & eligibility</a><a href="#state-documents">Documents</a></div>
+    <div className="state-guide-grid">{sections.map(([id, label, title, copy, href, link], index) => <article id={id} className="state-guide-block" key={id}><div className="state-guide-head"><TopicIcon title={label} /><span className="reference-badge">{String(index + 1).padStart(2, '0')} · {label}</span></div><h3>{title}</h3><p>{copy}</p><a className="text-link" href={href}>{link}</a></article>)}</div>
+    <p className="data-note">Overview reviewed {contentReviewDate}. College names, locations and seats come from the supplied <a href={indiaDirectorySource.url}>state-wise college list</a> and fee workbook; confirm current intake in the <a href="https://www.nmc.org.in/information-desk/college-and-course-search/">NMC college directory ↗</a>.</p>
+  </div></section>
+  <CollegeExplorer full initialState={recordName} />
+  <ProfileConversion initialProfile={{ domicile: name }} /></>;
 }

@@ -7,7 +7,11 @@ export const regions = {
   'North-East India': ['Assam', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Tripura', 'Arunachal Pradesh', 'Sikkim'],
 };
 export const territories = ['Delhi (NCT)', 'Jammu & Kashmir', 'Chandigarh', 'Puducherry', 'Andaman & Nicobar Islands', 'Ladakh', 'Dadra & Nagar Haveli and Daman & Diu', 'Lakshadweep'];
-export const states = Object.entries(regions).flatMap(([region, names]) => names.map(name => ({ name, region, slug: name.toLowerCase().replaceAll(' ', '-'), published: false })));
+export const stateSlug = name => name.toLowerCase().replace(/\(.*?\)/g, '').replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+// College records use the plain state/UT name ("Delhi"), while the picker shows "Delhi (NCT)".
+export const recordStateName = name => name.replace(/\s*\(.*?\)$/, '');
+export const states = Object.entries(regions).flatMap(([region, names]) => names.map(name => ({ name, region, slug: stateSlug(name), published: false })));
+export const statePages = [...states.map(state => state.name), ...territories].map(name => ({ name, slug: stateSlug(name), recordName: recordStateName(name) }));
 export const domicileOptions = [...states.map(s => s.name).sort(), ...territories, 'Other / NRI'];
 export const featuredStates = ['Uttar Pradesh', 'Maharashtra', 'Karnataka', 'Rajasthan', 'Madhya Pradesh', 'Gujarat', 'Haryana', 'Punjab', 'Tamil Nadu', 'Telangana', 'Andhra Pradesh', 'West Bengal'];
 // Publish reviewed records here (or replace this module with a CMS adapter).

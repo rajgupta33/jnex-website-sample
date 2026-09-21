@@ -1,7 +1,18 @@
 import references from './addition-references.json';
+import { indiaDirectoryColleges, directoryMatch, indiaDirectorySource } from './india-medical-colleges';
+import { stateFeeReferences } from './state-fee-references';
 
-export const referenceFiles = references.files;
+export const referenceFiles = { ...references.files, [indiaDirectorySource.file]: indiaDirectorySource.url };
 export const medicalReferences = references.medical;
+// Fee workbook records, enriched with the state directory's city/seats where the same college appears in both,
+// followed by the directory-only colleges (government colleges and states the workbook does not cover).
+const matched = new Set();
+const workbookRecords = references.medical.map(record => {
+  const entry = directoryMatch(record);
+  if (!entry) return record;
+  matched.add(entry.id);
+  return { ...record, city: entry.city, directorySeats: entry.reportedSeats, directoryManagement: entry.managementLabel };
+});
 export const engineeringReferences = references.engineering;
 export const contentReviewDate = '2026-09-16';
 export const referenceNote = 'JNEX planning references, not official fee orders or allotment results. Confirm the applicable intake, quota, fee period and additional charges before making a decision.';
@@ -87,8 +98,30 @@ export const stateGuides = stateBriefs.map(([name, authority, authorityUrl, post
 
 export const resources = [
   ['maharashtra-mbbs', 'Medical India', 'Maharashtra MBBS planning guide', 'Counselling routes, documents, private/deemed comparisons and scholarship questions.', 'MBBS_Maharashtra_Guide_JnexEducation-3.pdf', '/mbbs-admission/maharashtra/', '2025 trends and 2026 projections; fees, score bands and scheme details need current official confirmation.'],
+  ['india-medical-colleges', 'Medical India', 'State-wise MBBS college list', 'Government, private and deemed MBBS colleges across 22 states and Union Territories, with locations and reported seats.', 'Medical colleges in INDIA.pdf', '/medical-colleges/', 'Seat figures are indicative where given; confirm the current intake in the NMC college directory.'],
   ['medical-fees', 'Medical India', 'Medical college fee reference workbook', '58 deemed and 262 private source records, plus supplied state summaries.', 'Medical_Colleges_Fees_2026_Clean-2.xlsx', '/medical-colleges/', 'Fee headings conflict with yearly poster amounts. State summary totals do not fully reconcile; use the website’s labelled individual references.'],
   ['allied-health', 'Allied Health', 'Nine allied health course pathways', 'Subjects, clinical training, careers and work settings after Class 12.', 'Allied_Health_Science_Courses.pdf', '/medical-admissions/#allied-health', 'Typical course details; duration and eligibility vary by institution and intake.'],
   ['medical-abroad', 'Medical Abroad', 'International medical destination directory', '14 destinations with typical durations and instruction mediums.', 'study_abroad_guide_updated.pdf', '/mbbs-abroad/', 'Medical programs only. Country-level durations and mediums do not establish university eligibility for registration in India.'],
   ...[['India', 'india'], ['Karnataka', 'karnataka'], ['Maharashtra', 'maharashtra_v2'], ['Tamil Nadu', 'tamilnadu']].map(([name, file]) => [`engineering-${file}`, 'Engineering', `${name} engineering college directory`, 'Institution names, locations and supplied affiliation/status references.', `private_engineering_colleges_${file}.pdf`, '/india-admissions/engineering/', 'Includes private, deemed, autonomous and some government-aided institutions; not a current ranking or approval certificate.']),
 ].map(([id, category, title, copy, file, href, note]) => ({ id, category, title, copy, file, href, note, download: referenceFiles[file], format: file.endsWith('.xlsx') ? 'XLSX' : 'PDF' }));
+
+// Colleges that appear only in a state fee poster (not in the workbook or the state college list).
+// Spelling variants of listed colleges were checked by hand and are excluded here.
+const posterOnly = {
+  Gujarat: name => !name.startsWith('SBKS'),
+  Karnataka: ['Sri Basaveshwara Medical College, Chitradurga', 'JJM Medical College, Davanagere', 'Siddaganga Medical College, Tumakuru'],
+  'Tamil Nadu': ['Annai Medical College, Sriperumbudur', 'Takshashila Medical College, Ongur'],
+  'Uttar Pradesh': ['TS Mishra Medical College & Hospital, Lucknow', 'Narayana Medical College & Research Centre, Kanpur'],
+  'West Bengal': ['Jakar Hossain Medical College & Research Institute'],
+};
+const posterManagement = name => /GMERS/.test(name) ? ['Government', 'GMERS (state government society)'] : /Municipal|Narendra Modi/.test(name) ? ['Government', 'Municipal corporation'] : ['Private', 'Private (as listed in the poster)'];
+const posterRecords = Object.entries(posterOnly).flatMap(([state, include]) => {
+  const table = stateFeeReferences[state], guide = stateBriefs.find(brief => brief[0] === state);
+  return table.rows.filter(([name]) => typeof include === 'function' ? include(name) : include.includes(name)).map(([name, ...values], index) => {
+    const [management, managementLabel] = posterManagement(name);
+    const city = name.includes(',') ? name.split(',').at(-1).trim() : null;
+    return { id: `poster-${state.toLowerCase().replaceAll(' ', '-')}-${index + 1}`, name, state, city, management, managementLabel, poster: { period: table.period, fees: table.columns.slice(1).map((column, i) => [column, values[i]]), url: guide?.[3] ? referenceFiles[guide[3]] : null } };
+  });
+});
+
+export const collegeRecords = [...workbookRecords, ...indiaDirectoryColleges.filter(entry => !matched.has(entry.id)), ...posterRecords];

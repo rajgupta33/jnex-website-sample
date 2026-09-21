@@ -1,4 +1,4 @@
-import { CURRENT_YEAR, admissionRoutes, states, publishedState } from './data/admissions';
+import { CURRENT_YEAR, admissionRoutes, states, publishedState, statePages } from './data/admissions';
 import { india, abroad, scholarships, services } from './data/portfolio';
 import { contactHref } from './data/config';
 import PanIndia from './components/PanIndia';
@@ -14,7 +14,7 @@ import ResourceLibrary from './components/ResourceLibrary';
 import StudyAbroadExplorer from './components/UniversityDirectory';
 import MedicalPathways from './components/MedicalPathways';
 import EngineeringDirectory from './components/EngineeringDirectory';
-import StateAdmissionContent, { MaharashtraFunding } from './components/StateAdmissionContent';
+import StateAdmissionContent, { MaharashtraFunding, StateDirectoryContent } from './components/StateAdmissionContent';
 import { stateGuides, destinations } from './data/addition-content';
 import { StateShape, Flag, TopicIcon } from './components/Visuals';
 import { Stethoscope, ClipboardCheck, Globe, ArrowRight } from 'lucide-react';
@@ -43,6 +43,7 @@ export const pages = {
  '/nri-quota-mbbs/': ['NRI Quota MBBS Guidance | JNEX Education', admissionRoutes[5][1], 'NRI / Other Applicable Quotas'],
  '/privacy-policy/': ['Privacy & Admission Enquiries | JNEX Education', 'How the admission profile and enquiry form handle your information.', 'Privacy & Admission Enquiries'],
 };
+for (const state of statePages) pages[`/mbbs-admission/${state.slug}/`] = [`MBBS Admission in ${state.name} | Medical Colleges & Counselling | JNEX`, `Explore MBBS colleges in ${state.name}: government, private and deemed options, locations, seats and counselling routes to check with JNEX.`, `MBBS admission in ${state.name}.`];
 for (const state of stateGuides) pages[`/mbbs-admission/${state.slug}/`] = [`MBBS Planning in ${state.name} | Colleges & Fee References | JNEX`, state.intro, `MBBS admission planning in ${state.name}.`];
 for (const state of states.filter(publishedState)) pages[`/mbbs-admission/${state.slug}/`] = [state.seo_title, state.meta_description, state.h1];
 const pageIntroImages = {
@@ -76,7 +77,7 @@ function introImage(path, stateSlug) {
 const studyAbroadFlags = ['gb', 'us', 'ca', 'au', 'de', 'ie', 'nz', 'fr'];
 export function PageIntro({ path }) {
  const page = pages[path];
- const state = stateGuides.find(state => path === `/mbbs-admission/${state.slug}/`);
+ const state = [...stateGuides, ...statePages].find(state => path === `/mbbs-admission/${state.slug}/`);
  const publishedStatePage = states.find(s => path === `/mbbs-admission/${s.slug}/`);
  const stateName = state?.name || publishedStatePage?.name;
  const mbbsIntent = /mbbs|neet|medical-colleges|compare-medical/.test(path);
@@ -116,6 +117,8 @@ export default function PageContent({ path }) {
  const state = states.find(s => `/mbbs-admission/${s.slug}/` === path && publishedState(s));
  const referenceState = stateGuides.find(s => `/mbbs-admission/${s.slug}/` === path);
  if (referenceState && !state) return <StateAdmissionContent state={referenceState} />;
+ const directoryState = statePages.find(s => `/mbbs-admission/${s.slug}/` === path);
+ if (directoryState && !state) return <StateDirectoryContent name={directoryState.name} recordName={directoryState.recordName} />;
  if (state) return <><section className="bg-white"><div className="content-wrap prose-copy"><p>{state.intro}</p><p>Last reviewed: {state.last_reviewed}</p><a href={state.authority_url}>{state.counselling_authority} ↗</a>{state.sections.map(section => <article key={section.heading}><h2>{section.heading}</h2><p>{section.content}</p></article>)}{state.faqs.map(([q,a]) => <details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div></section><ProfileConversion initialProfile={{ domicile: state.name }} /></>;
  return null;
 }

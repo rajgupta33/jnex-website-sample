@@ -1348,8 +1348,9 @@
     {
       "id": "private-colleges-state-wise-6",
       "name": "Shri Guru Ram Rai Institute of Medical & Health Sciences, Dehradun",
-      "state": "Chhattisgarh",
-      "location": "Chhattisgarh",
+      "state": "Uttarakhand",
+      "location": "Uttarakhand (Dehradun)",
+      "stateCorrection": "Listed under Chhattisgarh in the supplied workbook; the college is in Dehradun, Uttarakhand.",
       "management": "Private",
       "university": "Shri Guru Ram Rai University",
       "established": 2006,
