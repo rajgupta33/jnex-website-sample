@@ -7,6 +7,7 @@ import TrustStrip from './components/TrustStrip';
 import ChoosePath from './components/ChoosePath';
 import ProfileConversion from './components/ProfileConversion';
 import WhyJnex from './components/WhyJnex';
+import VideoSection from './components/VideoSection';
 import CollegeExplorer from './components/CollegeExplorer';
 import { CostComparison as SmartComparison } from './components/DecisionTools';
 import PanIndia from './components/PanIndia';
@@ -36,6 +37,7 @@ function App({ path = typeof window !== 'undefined' ? window.location.pathname.r
         <ChoosePath />
         <ProfileConversion initialProfile={profile} />
         <WhyJnex />
+        <VideoSection />
         <CollegeExplorer />
         <SmartComparison />
         <CounsellingRoadmap />

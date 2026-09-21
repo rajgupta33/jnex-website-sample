@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { referenceFiles, referenceNote, contentReviewDate, collegeRecords } from '../data/addition-content';
 import { indiaDirectorySource } from '../data/india-medical-colleges';
+import { nmcSource } from '../data/nmc-colleges';
 import { stateFeeReferences } from '../data/state-fee-references';
 import CollegeExplorer from './CollegeExplorer';
 import ProfileConversion from './ProfileConversion';
@@ -57,10 +58,10 @@ export function StateDirectoryContent({ name, recordName }) {
   ];
   return <><section className="bg-white section-decor state-plan-section"><StateShape name={name} className="section-state-watermark" /><div className="content-wrap">
     <p className="eyebrow">MBBS IN {name.toUpperCase()}</p><h2>{records.length ? `${records.length} MBBS colleges to explore in ${name}.` : `Plan MBBS options from ${name}.`}</h2>
-    <p className="section-copy">{records.length ? `The list below covers ${records.length} college record${records.length === 1 ? '' : 's'} (${counts.map(([type, count]) => `${count} ${type.toLowerCase()}`).join(', ')}) from the supplied state college list and fee workbook. Compare each college’s location, seats and admission route, then confirm current details with the counselling authority.` : `The supplied college lists do not include an MBBS college in ${name}. Students from ${name} can explore All India Quota, central institutions, deemed universities and other states’ open seats, subject to eligibility.`}</p>
+    <p className="section-copy">{records.length ? `The list below covers ${records.length} college record${records.length === 1 ? '' : 's'} (${counts.map(([type, count]) => `${count} ${type.toLowerCase()}`).join(', ')}) from the NMC college directory and JNEX’s supplied college lists. Compare each college’s location, seats and admission route, then confirm current details with the counselling authority.` : `Neither the NMC directory nor the supplied college lists include an MBBS college in ${name}. Students from ${name} can explore All India Quota, central institutions, deemed universities and other states’ open seats, subject to eligibility.`}</p>
     <div className="reference-tabs"><a href="#colleges">College list</a><a href="#counselling-routes">Routes & eligibility</a><a href="#state-documents">Documents</a></div>
     <div className="state-guide-grid">{sections.map(([id, label, title, copy, href, link], index) => <article id={id} className="state-guide-block" key={id}><div className="state-guide-head"><TopicIcon title={label} /><span className="reference-badge">{String(index + 1).padStart(2, '0')} · {label}</span></div><h3>{title}</h3><p>{copy}</p><a className="text-link" href={href}>{link}</a></article>)}</div>
-    <p className="data-note">Overview reviewed {contentReviewDate}. College names, locations and seats come from the supplied <a href={indiaDirectorySource.url}>state-wise college list</a> and fee workbook; confirm current intake in the <a href="https://www.nmc.org.in/information-desk/college-and-course-search/">NMC college directory ↗</a>.</p>
+    <p className="data-note">Overview reviewed {contentReviewDate}. College names, management and MBBS seats come from the <a href={nmcSource.url}>NMC college directory ↗</a> (valid as on 17 Sep 2026 for AY {nmcSource.academicYear}), with national institutes such as AIIMS from the supplied <a href={indiaDirectorySource.url}>state-wise college list</a>. Fees are supplied planning references; confirm them with the college.</p>
   </div></section>
   <CollegeExplorer full initialState={recordName} />
   <ProfileConversion initialProfile={{ domicile: name }} /></>;

@@ -1,6 +1,7 @@
 import references from './addition-references.json';
 import { indiaDirectoryColleges, directoryMatch, indiaDirectorySource } from './india-medical-colleges';
 import { stateFeeReferences } from './state-fee-references';
+import { withNmc } from './nmc-colleges';
 
 export const referenceFiles = { ...references.files, [indiaDirectorySource.file]: indiaDirectorySource.url };
 export const medicalReferences = references.medical;
@@ -106,13 +107,13 @@ export const resources = [
 ].map(([id, category, title, copy, file, href, note]) => ({ id, category, title, copy, file, href, note, download: referenceFiles[file], format: file.endsWith('.xlsx') ? 'XLSX' : 'PDF' }));
 
 // Colleges that appear only in a state fee poster (not in the workbook or the state college list).
-// Spelling variants of listed colleges were checked by hand and are excluded here.
+// Spelling variants of listed colleges were checked by hand and are excluded here (for example the poster's
+// TS Mishra, Narayana (Kanpur), Jakar Hossain and Sri Basaveshwara are the workbook's T S Misra, Naraina,
+// Jakir Hosain and Basaveswara).
 const posterOnly = {
   Gujarat: name => !name.startsWith('SBKS'),
-  Karnataka: ['Sri Basaveshwara Medical College, Chitradurga', 'JJM Medical College, Davanagere', 'Siddaganga Medical College, Tumakuru'],
+  Karnataka: ['JJM Medical College, Davanagere', 'Siddaganga Medical College, Tumakuru'],
   'Tamil Nadu': ['Annai Medical College, Sriperumbudur', 'Takshashila Medical College, Ongur'],
-  'Uttar Pradesh': ['TS Mishra Medical College & Hospital, Lucknow', 'Narayana Medical College & Research Centre, Kanpur'],
-  'West Bengal': ['Jakar Hossain Medical College & Research Institute'],
 };
 const posterManagement = name => /GMERS/.test(name) ? ['Government', 'GMERS (state government society)'] : /Municipal|Narendra Modi/.test(name) ? ['Government', 'Municipal corporation'] : ['Private', 'Private (as listed in the poster)'];
 const posterRecords = Object.entries(posterOnly).flatMap(([state, include]) => {
@@ -124,4 +125,4 @@ const posterRecords = Object.entries(posterOnly).flatMap(([state, include]) => {
   });
 });
 
-export const collegeRecords = [...workbookRecords, ...indiaDirectoryColleges.filter(entry => !matched.has(entry.id)), ...posterRecords];
+export const collegeRecords = withNmc([...workbookRecords, ...indiaDirectoryColleges.filter(entry => !matched.has(entry.id)), ...posterRecords]);
