@@ -17,6 +17,9 @@ before-desktop.png
 
 # Local visual QA helpers and generated screenshots
 qa-*.mjs
+tmp/
+.sites-deploy*.tar.gz
+public/images/**/*-old.*
 
 # Editor directories and files
 .vscode/*
