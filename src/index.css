@@ -900,3 +900,41 @@ main > section.quick-links-section { padding-block: clamp(36px,4vw,56px) 0; }
 .short-caption { position: absolute; left: 12px; right: 12px; bottom: 12px; padding: 6px 10px; border-radius: 8px; background: #071322d9; color: #fff; font-size: 12px; font-weight: 600; text-align: left; }
 @media (max-width:767px) { .video-section .split-feature { grid-template-columns: minmax(0,1fr); } .short-frame { width: min(100%, 280px); } }
 .reference-badge.nmc-listed { background: #e8f0fb; color: #1f4f8a; margin-top: -4px; }
+.neet-papers { background: linear-gradient(135deg, #fffefa, #f4f1e9); }
+.neet-papers-heading { display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+.neet-papers-heading h2 { font-size: clamp(30px, 3.5vw, 46px); line-height: 1.16; font-weight: 800; letter-spacing: -.035em; }
+.neet-papers-heading .section-copy { max-width: 730px; }
+.neet-papers-stat { display: grid; justify-items: center; gap: 8px; padding: 28px; border: 1px solid #ded4bd; border-radius: 20px; color: #82662f; flex-shrink: 0; }
+.neet-papers-stat strong { font-size: 48px; line-height: 1; color: #13233b; }
+.neet-papers-stat span { font-size: 12px; }
+.neet-papers-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-block: 32px 20px; }
+.neet-papers-toolbar label { display: flex; align-items: center; gap: 14px; font-size: 13px; font-weight: 650; }
+.neet-papers-toolbar select { min-height: 46px; border: 1px solid #d7d0c0; border-radius: 8px; padding: 10px 32px 10px 14px; background: white; color: #13233b; }
+.neet-papers-toolbar p { font-size: 12px; color: #526075; }
+.neet-paper-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.neet-paper-card { min-width: 0; background: white; border: 1px solid #e1ddd4; border-radius: 16px; padding: 24px; box-shadow: 0 5px 18px #13233b04; }
+.neet-paper-card-top { display: flex; justify-content: space-between; align-items: center; color: #97732e; margin-bottom: 22px; }
+.neet-paper-card-top span { background: #f7f2e7; border: 1px solid #e9dfc7; border-radius: 6px; padding: 5px 10px; font-size: 12px; font-weight: 700; }
+.neet-paper-card h3 { font-size: 21px; font-weight: 750; color: #13233b; }
+.neet-paper-edition { min-height: 49px; margin-top: 8px; color: #526075; font-size: 14px; line-height: 1.7; }
+.neet-paper-edition span { display: block; font-size: 12px; }
+.neet-paper-meta { display: flex; gap: 9px; color: #617087; font-size: 11px; margin-block: 18px; }
+.neet-paper-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 14px; border-top: 1px solid #e8e5df; padding-top: 10px; }
+.neet-paper-actions a { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; font-size: 12px; font-weight: 700; color: #13233b; }
+.neet-paper-actions a:hover { color: #82662f; }
+.neet-papers-more { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 48px; margin: 26px auto 0; padding: 12px 24px; background: #13233b; color: #f4d997; border-radius: 9px; font-size: 13px; font-weight: 650; cursor: pointer; }
+.neet-paper-link { display: flex; align-items: center; gap: 22px; margin-top: 28px; padding: 26px 30px; background: linear-gradient(110deg, #0b1729, #203650); color: white; border: 1px solid #33445b; border-radius: 16px; }
+.neet-paper-link > span:nth-child(2) { flex: 1; min-width: 0; }
+.neet-paper-link small { display: block; font-size: 10px; letter-spacing: .13em; color: #e3c585; }
+.neet-paper-link strong { display: block; font-size: clamp(19px, 2vw, 24px); margin-block: 7px; }
+.neet-paper-link > span > span { font-size: 13px; color: #c8d3e0; line-height: 1.7; display: block; }
+.neet-paper-link-icon, .neet-paper-link > svg { color: #e3c585; flex-shrink: 0; }
+@media (max-width: 900px) { .neet-paper-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .neet-papers-stat { display: none; }
+  .neet-paper-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .neet-papers-toolbar { align-items: flex-start; flex-direction: column; gap: 10px; }
+  .neet-paper-card { padding: 22px; }
+  .neet-paper-link { padding: 22px; gap: 14px; }
+  .neet-paper-link-icon { display: none; }
+}

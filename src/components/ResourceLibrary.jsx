@@ -1,3 +1,4 @@
+import { NeetPapersLink } from './NeetPapers';
 import { useState } from 'react';
 import { ArrowRight, BookOpen, Download, Stethoscope, Activity, Globe, Cog, MapPinned } from 'lucide-react';
 import { referenceFiles, resources, stateGuides, contentReviewDate } from '../data/addition-content';
@@ -20,11 +21,12 @@ export default function ResourceLibrary({ preview = false }) {
     { id: 'abroad-poster', category: 'Medical Abroad', title: 'MBBS abroad budget reference poster', copy: 'Eight supplied country-level approximate budget ranges.', file: 'MBBS ABROAD .png', href: '/mbbs-abroad/', note: 'Budget inclusions, university recognition and performance claims are not established by this promotional poster.' },
     { id: 'bengaluru-poster', category: 'State References', title: 'Bengaluru medical college reference', copy: 'A supplied location-based college shortlist.', file: 'PHOTO-2026-07-01-11-39-47.jpg.jpeg', href: '/mbbs-admission/karnataka/#bengaluru', note: 'The “under ₹60 lakh” and “350+” claims have no confirmed fee inclusions, quota or cutoff edition.' },
   ].map(resource => ({ ...resource, format: 'Image', download: referenceFiles[resource.file] }));
-  const all = [...resources, ...images];
+  const all = [...resources, { id: 'private-bds-colleges', category: 'Medical India', title: 'Private BDS colleges in India', copy: 'A state-wise dental college reference to support your BDS shortlist.', format: 'PDF', href: '/medical-admissions/#bds', download: '/resources/private-bds-colleges-india.pdf', note: 'Supplied compilation of 266 entries. Confirm current recognition, seats and counselling eligibility with the relevant authority.' }, ...images];
   const visible = preview ? [resources[0], resources[2], resources[3]] : all.filter(resource => category === 'All' || resource.category === category);
   return <section id={preview ? 'guides' : 'resource-library'} className="bg-slate-50"><div className="content-wrap">
     <p className="eyebrow">JNEX ADMISSION RESOURCES</p><h2>{preview ? 'Read a little. Plan with more clarity.' : 'Guides for your next admission decision.'}</h2>
     <p className="section-copy">Explore readable course and college information, then open the original guides for more context. Supplied fee and cutoff figures are planning references that need official confirmation.</p>
+    {preview && <NeetPapersLink />}
     {!preview && <div className="reference-tabs" role="group" aria-label="Filter resources by category">{['All', ...new Set(all.map(resource => resource.category))].map(value => <button type="button" aria-pressed={category === value} key={value} onClick={() => setCategory(value)}>{value}</button>)}</div>}
     <div className="discovery-grid">{visible.map(resource => <article id={preview ? undefined : resource.id} className="discovery-card resource-card" key={resource.id}>
       <ResourceCover resource={resource} />
