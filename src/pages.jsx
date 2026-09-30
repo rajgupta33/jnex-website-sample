@@ -21,6 +21,7 @@ import { StateShape, Flag, TopicIcon } from './components/Visuals';
 import { Stethoscope, ClipboardCheck, Globe, ArrowRight } from 'lucide-react';
 
 export const pages = {
+ '/bds-admission/': ['BDS Admission & Dental Colleges in India | JNEX Education', 'Explore the JNEX private BDS college directory by state. Build a dental college shortlist and discuss admission planning, costs and counselling with JNEX.', 'BDS Admission & Dental Colleges in India'],
  '/': ['MBBS Admission & NEET Counselling ' + CURRENT_YEAR + ' | JNEX Education', 'Get MBBS admission guidance across India based on NEET rank, domicile, category and budget. Compare colleges, fees, cutoffs and counselling routes.'],
  '/mbbs-admission/': ['MBBS Admission in India ' + CURRENT_YEAR + ' | Counselling, Colleges & Fees | JNEX', 'Explore MBBS admission in India through NEET counselling. Compare state-wise options, Government, Private and Deemed colleges, fees, cutoffs and admission routes with JNEX.', `MBBS Admission in India ${CURRENT_YEAR}: State-wise Counselling, Colleges & Options`],
  '/medical-admissions/': ['Medical Admissions | JNEX Education', 'Explore MBBS, dental, AYUSH, nursing, physiotherapy, pharmacy and allied-health admission guidance.', 'Medical Admissions'],

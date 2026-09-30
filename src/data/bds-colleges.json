@@ -1,0 +1,400 @@
+[
+  {
+    "state": "Andhra Pradesh",
+    "expectedCount": 15,
+    "colleges": [
+      "Anil Neerukonda Institute of Dental Sciences, Visakhapatnam",
+      "C.K.S. Teja Institute of Dental Sciences & Research, Tirupati",
+      "Care Dental College, Guntur",
+      "Drs. Sudha & Nageswara Rao Siddhartha Institute of Dental Sciences",
+      "G. Pulla Reddy Dental College & Hospital, Kurnool",
+      "Gitam Dental College & Hospital, Visakhapatnam",
+      "GSL Dental College & Hospital, Rajahmundry",
+      "KIMS Dental College, Amalapuram",
+      "Lenora Institute of Dental Sciences, Rajahmundry",
+      "Narayana Dental College & Hospital, Nellore",
+      "Nimra Institute of Dental Sciences",
+      "Sibar Institute of Dental Sciences, Guntur",
+      "Sree Sai Dental College & Research Institute, Srikakulam",
+      "St. Joseph Dental College, Duggirala",
+      "Vishnu Dental College, Bhimavaram"
+    ]
+  },
+  {
+    "state": "Bihar",
+    "expectedCount": 3,
+    "colleges": [
+      "Buddha Institute of Dental Sciences & Hospital, Patna",
+      "Mithila Minority Dental College & Hospital, Darbhanga",
+      "Sarjug Dental College, Darbhanga"
+    ]
+  },
+  {
+    "state": "Chhattisgarh",
+    "expectedCount": 5,
+    "colleges": [
+      "Chhattisgarh Dental College & Research Institute, Rajnandgaon",
+      "Maitri College of Dentistry & Research Centre, Durg",
+      "New Horizon Dental College & Research Institute, Bilaspur",
+      "Rungta College of Dental Sciences & Research, Bhilai",
+      "Triveni Institute of Dental Sciences, Hospital & Research Centre, Bilaspur"
+    ]
+  },
+  {
+    "state": "Daman & Diu",
+    "expectedCount": 1,
+    "colleges": [
+      "Vaidik Dental College & Research Centre"
+    ]
+  },
+  {
+    "state": "Gujarat",
+    "expectedCount": 9,
+    "colleges": [
+      "Ahmedabad Dental College & Hospital, Gandhinagar",
+      "College of Dental Sciences & Research Centre, Ahmedabad",
+      "College of Dental Sciences, Amargadh",
+      "Faculty of Dental Science, Dharmsinh Desai University, Nadiad",
+      "Goenka Research Institute of Dental Sciences, Gandhinagar",
+      "K.M. Shah Dental College & Hospital, Vadodara",
+      "Karnavati School of Dentistry, Gandhinagar",
+      "Manubhai Patel Dental College & Dental Hospital, Vadodara",
+      "Narsinhbhai Patel Dental College & Hospital, Visnagar"
+    ]
+  },
+  {
+    "state": "Haryana",
+    "expectedCount": 9,
+    "colleges": [
+      "D.A.V. Centenary Dental College, Yamunanagar",
+      "Jan Nayak Ch. Devi Lal Dental College, Sirsa",
+      "Maharishi Markandeshwar College of Dental Sciences & Research, Mullana",
+      "Manav Rachana Dental College, Faridabad",
+      "PDM Dental College & Research Institute, Jhajjar",
+      "Sri Govind Tricentenary Dental College, Hospital & Research Institute",
+      "Sudha Rustagi College of Dental Sciences & Research, Faridabad",
+      "Swami Devi Dyal Hospital & Dental College, Panchkula",
+      "Yamuna Institute of Dental Sciences & Research, Yamunanagar"
+    ]
+  },
+  {
+    "state": "Himachal Pradesh",
+    "expectedCount": 3,
+    "colleges": [
+      "Bhojia Dental College & Hospital, Nalagarh",
+      "Himachal Dental College, Sundernagar",
+      "Himachal Institute of Dental Sciences, Paonta Sahib"
+    ]
+  },
+  {
+    "state": "Jammu & Kashmir",
+    "expectedCount": 1,
+    "colleges": [
+      "Institute of Dental Sciences, Sehora"
+    ]
+  },
+  {
+    "state": "Jharkhand",
+    "expectedCount": 3,
+    "colleges": [
+      "Awadh Dental College & Hospital, Jamshedpur",
+      "Hazaribag College of Dental Sciences & Hospital, Hazaribag",
+      "Vananchal Dental College & Hospital, Garhwa"
+    ]
+  },
+  {
+    "state": "Karnataka",
+    "expectedCount": 43,
+    "colleges": [
+      "A.B. Shetty Memorial Institute of Dental Sciences, Mangalore",
+      "A.J. Institute of Dental Sciences, Mangalore",
+      "Al Ameen Dental College & Hospital, Bijapur",
+      "Al-Badar Rural Dental College & Hospital, Gulbarga",
+      "AME's Dental College & Hospital, Raichur",
+      "Bangalore Institute of Dental Sciences & Hospital",
+      "Bapuji Dental College & Hospital, Davangere",
+      "BGS Global Institute of Dental Sciences & Hospital, Bangalore",
+      "College of Dental Sciences, Davangere",
+      "Coorg Institute of Dental Sciences, Virajpet",
+      "D.A. Pandu Memorial R.V. Dental College, Bangalore",
+      "Dayanand Sagar College of Dental Sciences, Bangalore",
+      "Dr. Syamala Reddy Dental College, Hospital & Research Centre",
+      "H.K.D.E.T's Dental College, Hospital & Research Institute, Humnabad",
+      "H.K.E. Society's S. Nijalingappa Institute of Dental Sciences & Research",
+      "JSS Dental College & Hospital, Mysore",
+      "K.G.F. College of Dental Sciences & Hospital",
+      "K.V.G. Dental College & Hospital, Sullia",
+      "KLE Society's Institute of Dental Sciences, Bangalore",
+      "KLE Vishwanath Katti Institute of Dental Sciences, Belgaum",
+      "Krishnadevaraya College of Dental Sciences & Hospital, Bangalore",
+      "M.R. Ambedkar Dental College & Hospital, Bangalore",
+      "M.S. Ramaiah Dental College, Bangalore",
+      "Manipal College of Dental Sciences, Mangalore",
+      "Manipal College of Dental Sciences, Manipal",
+      "Maratha Mandal's Dental College & Research Centre, Belgaum",
+      "Navodaya Dental College, Raichur",
+      "P.M.N.M. Dental College & Hospital, Bagalkot",
+      "Rajarajeswari Dental College & Hospital, Bangalore",
+      "S.B. Patil Dental College & Hospital, Bidar",
+      "S.J.M. Dental College & Hospital, Chitradurga",
+      "SDM College of Dental Sciences & Hospital, Dharwad",
+      "Sharavathi Dental College & Hospital, Shimoga",
+      "Sri Hasanamba Dental College & Hospital, Hassan",
+      "Sri Rajiv Gandhi College of Dental Sciences & Hospital, Bangalore",
+      "Sri Siddhartha Dental College, Tumkur",
+      "Sri Venkateshwara Dental College & Hospital, Bangalore",
+      "Srinivas Institute of Dental Sciences, Mangalore",
+      "Subbaiah Institute of Dental Sciences, Shimoga",
+      "The Oxford Dental College, Bangalore",
+      "V.S. Dental College, Bangalore",
+      "Vydehi Institute of Dental Sciences & Research, Bangalore",
+      "Yenepoya Dental College & Hospital, Mangalore"
+    ]
+  },
+  {
+    "state": "Kerala",
+    "expectedCount": 20,
+    "colleges": [
+      "Al-Azhar Dental College",
+      "Amrita School of Dentistry, Kochi",
+      "Annoor Dental College & Hospital",
+      "Azeezia College of Dental Sciences & Research",
+      "Educare Institute of Dental Sciences",
+      "Indira Gandhi Institute of Dental Sciences",
+      "Kannur Dental College",
+      "KMCT Dental College, Calicut",
+      "Malabar Dental College & Research Centre",
+      "Mar Baselios Dental College",
+      "MES Dental College",
+      "Noorul Islam College of Dental Sciences",
+      "PMS College of Dental Science & Research",
+      "PSM College of Dental Sciences & Research",
+      "Pushpagiri College of Dental Sciences",
+      "Royal Dental College",
+      "Sree Anjaneya Medical Trust, Calicut",
+      "Sri Sankara Dental College",
+      "St. Gregorios Dental College",
+      "Travancore Dental College"
+    ]
+  },
+  {
+    "state": "Madhya Pradesh",
+    "expectedCount": 13,
+    "colleges": [
+      "Bhabha College of Dental Sciences, Bhopal",
+      "College of Dental Sciences & Hospital, Indore",
+      "Guru Gobind Singh College of Dental Science & Research Centre, Burhanpur",
+      "Hitkarini Dental College & Hospital, Jabalpur",
+      "Index Institute of Dental Sciences, Indore",
+      "Maharana Pratap College of Dentistry & Research Centre, Gwalior",
+      "Mansarover Dental College, Bhopal",
+      "Modern Dental College & Research Centre, Indore",
+      "People's Dental Academy, Bhopal",
+      "People's College of Dental Sciences & Research Centre, Bhopal",
+      "Rishiraj College of Dental Sciences & Research Centre, Bhopal",
+      "RKDF Dental College & Research Centre, Bhopal",
+      "Sri Aurobindo College of Dentistry, Indore"
+    ]
+  },
+  {
+    "state": "Maharashtra",
+    "expectedCount": 34,
+    "colleges": [
+      "Aditya Dental College, Beed",
+      "Annasaheb Chudaman Patil Memorial Dental College, Dhule",
+      "Bharati Vidyapeeth Dental College & Hospital, Navi Mumbai",
+      "Bharati Vidyapeeth Dental College & Hospital, Pune",
+      "Bharati Vidyapeeth Dental College & Hospital, Sangli",
+      "Chatrapati Shahu Maharaj Shikshan Sanstha's Dental College & Hospital, Aurangabad",
+      "D.Y. Patil Dental School, Pune",
+      "Datta Meghe Dental College, Hospital & Research Center, Nagpur",
+      "Dr. D.Y. Patil Dental College & Hospital, Pune",
+      "Dr. Hedgewar Smruti Rugna Seva Mandals Dental College & Hospital, Hingoli",
+      "Dr. Rajesh Ramdasji Kambe Dental College & Hospital, Akola",
+      "Late Shri Yashwantrao Chavan Memorial Medical & Rural Development Foundation's Dental College & Hospital, Ahmednagar",
+      "M.A. Rangoonwala College of Dental Sciences & Research Centre, Pune",
+      "Maharashtra Institute of Dental Sciences & Research, Latur",
+      "Mahatma Gandhi Missions Dental College & Hospital, Kamothe, Navi Mumbai",
+      "Mahatma Gandhi Vidya Mandir's Dental College & Hospital, Nashik",
+      "Nanded Rural Dental College & Research Center, Nanded",
+      "Padmashree Dr. D.Y. Patil Dental College & Hospital, Navi Mumbai",
+      "Pandit Deendayal Upadhyay Dental College, Solapur",
+      "Ranjeet Deshmukh Dental College & Research Centre, Nagpur",
+      "Rural Dental College, Loni",
+      "S.M.B.T. Dental College & Hospital, Amrutnagar",
+      "Saraswati Danwantri Dental College & Hospital, Parbhani",
+      "School of Dental Sciences, Krishna Institute of Medical Sciences, Karad",
+      "Sharad Pawar Dental College & Hospital, Wardha",
+      "Sinhgad Dental College & Hospital, Pune",
+      "SMBT Institute of Dental Sciences & Research, Nashik",
+      "Swargiya Dadasaheb Kalmegh Smruti Dental College & Hospital, Nagpur",
+      "Tatyasaheb Kore Dental College & Research Centre, New Pargaon",
+      "Terna Dental College & Hospital, Navi Mumbai",
+      "Vasantdada Patil Dental College & Hospital, Sangli",
+      "Vidarbha Youth Welfare Society's Dental College & Hospital, Amravati",
+      "Yerala Medical Trust & Research Centre's Dental College & Hospital, Navi Mumbai",
+      "Yogita Dental College & Hospital, Ratnagiri"
+    ]
+  },
+  {
+    "state": "Odisha",
+    "expectedCount": 3,
+    "colleges": [
+      "Hi-Tech Dental College & Hospital, Bhubaneswar",
+      "Institute of Dental Sciences, Bhubaneswar",
+      "Kalinga Institute of Dental Sciences, Bhubaneswar"
+    ]
+  },
+  {
+    "state": "Puducherry",
+    "expectedCount": 3,
+    "colleges": [
+      "Indira Gandhi Institute of Dental Sciences, Pondicherry",
+      "Mahe Institute of Dental Sciences & Hospital, Mahe",
+      "Sri Venkateshwaraa Dental College, Puducherry"
+    ]
+  },
+  {
+    "state": "Punjab",
+    "expectedCount": 15,
+    "colleges": [
+      "Adesh Institute of Dental Sciences & Research, Bathinda",
+      "Baba Jaswant Singh Dental College Hospital & Research Institute, Ludhiana",
+      "Christian Dental College, Ludhiana",
+      "Dasmesh Institute of Research & Dental Sciences, Faridkot",
+      "Desh Bhagat Dental College & Hospital, Mandi Gobindgarh",
+      "Genesis Institute of Dental Sciences & Research, Ferozepur",
+      "Gian Sagar Dental College & Hospital",
+      "Guru Nanak Dev Dental College & Research Institute, Sunam",
+      "Luxmi Bai Institute of Dental Sciences & Hospital, Patiala",
+      "National Dental College & Hospital, Gulabgarh",
+      "Rayat Bahra Dental College, Mohali",
+      "RIMT Dental College, Mandi Gobindgarh",
+      "Shaheed Kartar Singh Sarabha Dental College & Hospital, Ludhiana",
+      "Sri Guru Ram Das Institute of Dental Sciences & Research, Amritsar",
+      "Sukhmani Dental College & Hospital, Derabassi"
+    ]
+  },
+  {
+    "state": "Rajasthan",
+    "expectedCount": 16,
+    "colleges": [
+      "Darshan Dental College & Hospital, Udaipur",
+      "Daswani Dental College & Research Centre, Kota",
+      "Dr. S.S. Tantia Dental College Hospital & Research Centre",
+      "Eklavya Dental College & Hospital, Kotputli",
+      "Geetanjali Dental & Research Institute, Udaipur",
+      "Jaipur Dental College, Jaipur",
+      "Jodhpur Dental College General Hospital, Jodhpur",
+      "Maharaja Ganga Singh Dental College & Research Centre, Sri Ganganagar",
+      "Mahatma Gandhi Dental College & Hospital, Jaipur",
+      "NIMS Dental College, Jaipur",
+      "Pacific Dental College & Research Centre",
+      "Pacific Dental College, Udaipur",
+      "R.R. Dental College & Hospital, Udaipur",
+      "Rajasthan Dental College & Hospital, Jaipur",
+      "Surendera Dental College & Research Institute, Sri Ganganagar",
+      "Vyas Dental College & Hospital, Jodhpur"
+    ]
+  },
+  {
+    "state": "Tamil Nadu",
+    "expectedCount": 29,
+    "colleges": [
+      "Adhiparasakthi Dental College & Hospital",
+      "Asan Memorial Dental College & Hospital",
+      "Best Dental Science College, Madurai",
+      "Chettinad Dental College & Research Institute",
+      "CSI College of Dental Sciences & Research",
+      "Dhanalakshmi Srinivasan Dental College",
+      "JKK Natrajah Dental College & Hospital",
+      "K.S.R. Institute of Dental Science & Research",
+      "Karpaga Vinayaga Institute of Dental Sciences",
+      "Madha Dental College & Hospital",
+      "Meenakshi Ammal Dental College & Hospital",
+      "Nandha Dental College & Hospital",
+      "Priyadarshini Dental College & Hospital",
+      "R.V.S. Dental College & Hospital",
+      "Ragas Dental College & Hospital",
+      "Rajas Dental College & Hospital",
+      "S.R.M. Dental College, Ramapuram",
+      "Sathyabama University Dental College & Hospital",
+      "Saveetha Dental College & Hospital",
+      "Sree Balaji Dental College & Hospital",
+      "Sree Mookambika Institute of Dental Sciences",
+      "Sri Ramachandra Dental College & Hospital",
+      "Sri Ramakrishna Dental College & Hospital",
+      "Sri Venkateswara Dental College & Hospital",
+      "SRM Kattankulathur Dental College & Hospital",
+      "Tagore Dental College & Hospital",
+      "Thai Moogambigai Dental College & Hospital",
+      "Vinayaka Mission's Sankarachariyar Dental College",
+      "Vivekanandha Dental College for Women"
+    ]
+  },
+  {
+    "state": "Telangana",
+    "expectedCount": 13,
+    "colleges": [
+      "Army College of Dental Sciences, Secunderabad",
+      "Kamineni Institute of Dental Sciences, Nalgonda",
+      "Malla Reddy Dental College for Women, Hyderabad",
+      "Malla Reddy Institute of Dental Sciences, Hyderabad",
+      "Mamata Dental College, Khammam",
+      "Mamata Institute of Dental Sciences",
+      "Meghna Institute of Dental Sciences, Nizamabad",
+      "MNR Dental College & Hospital, Medak",
+      "Panineeya Mahavidyalaya Institute of Dental Sciences & Research Centre, Hyderabad",
+      "Sri Balaji Dental College, Hyderabad",
+      "Sri Sai College of Dental Surgery, Vikarabad",
+      "Sri Venkata Sai Institute of Dental Sciences, Hyderabad",
+      "Tirumala Institute of Dental Sciences & Research Centre"
+    ]
+  },
+  {
+    "state": "Uttar Pradesh",
+    "expectedCount": 23,
+    "colleges": [
+      "Babu Banarasi Das College of Dental Sciences, Lucknow",
+      "Career Institute of Dental Sciences & Hospital, Lucknow",
+      "Chandra Dental College & Hospital, Safedabad",
+      "D.J. College of Dental Sciences & Research, Modi Nagar",
+      "Dental College Azamgarh",
+      "I.T.S. Centre for Dental Studies & Research, Ghaziabad",
+      "I.T.S. Dental College, Hospital & Research Centre, Greater Noida",
+      "Inderprastha Dental College & Hospital, Ghaziabad",
+      "Institute of Dental Sciences, Bareilly",
+      "Institute of Dental Studies & Technology, Modinagar",
+      "K.D. Dental College, Mathura",
+      "Kalka Dental College & Hospital, Meerut",
+      "Kothiwal Dental College & Research Centre, Moradabad",
+      "Maharana Pratap Dental College & Hospital, Kanpur",
+      "Purvanchal Institute of Dental Sciences, Gorakhpur",
+      "Rama Dental College, Hospital & Research Centre, Kanpur",
+      "Santosh Dental College & Hospital, Ghaziabad",
+      "Saraswati Dental College, Lucknow",
+      "Sardar Patel Post Graduate Institute of Dental & Medical Sciences, Lucknow",
+      "School of Dental Sciences, Greater Noida",
+      "Shree Bankey Bihari Dental College & Research Centre, Masuri",
+      "Subharti Dental College, Meerut",
+      "Teerthanker Mahaveer Dental College & Research Centre, Moradabad"
+    ]
+  },
+  {
+    "state": "Uttarakhand",
+    "expectedCount": 2,
+    "colleges": [
+      "Seema Dental College & Hospital, Rishikesh",
+      "Uttaranchal Dental College & Medical Research Institute, Dehradun"
+    ]
+  },
+  {
+    "state": "West Bengal",
+    "expectedCount": 3,
+    "colleges": [
+      "Gurunanak Institute of Dental Science & Research, Kolkata",
+      "Haldia Institute of Dental Sciences & Research",
+      "Kusum Devi Sunderlal Dugar Jain Dental College & Hospital, Kolkata"
+    ]
+  }
+]

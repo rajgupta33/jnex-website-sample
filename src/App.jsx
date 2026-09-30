@@ -1,3 +1,4 @@
+import BDSLanding from './components/BDSLanding';
 import HomepageMotion from './components/HomepageMotion';
 import FAQ from './components/FAQ';
 import { useState } from 'react';
@@ -30,7 +31,7 @@ function App({ path = typeof window !== 'undefined' ? window.location.pathname.r
       <Header />
       <HomepageMotion />
       <main id="main-content">
-        {path !== '/' ? <><PageIntro path={path} /><PageContent path={path} /></> : <>
+        {path === '/bds-admission/' ? <BDSLanding /> : path !== '/' ? <><PageIntro path={path} /><PageContent path={path} /></> : <>
         <Hero onStartProfile={setProfile} />
         <TrustStrip />
         <PanIndia />
@@ -62,8 +63,8 @@ function App({ path = typeof window !== 'undefined' ? window.location.pathname.r
         >
           {whatsappNumber ? 'WhatsApp' : 'Contact JNEX'}
         </a>
-        <a href="/#counselling" className="flex-1 text-center bg-accent text-white font-bold py-3 rounded-xl text-sm hover:bg-accent-light transition-colors">
-          Check My Options
+        <a href={path === '/bds-admission/' ? '#bds-colleges' : '/#counselling'} className="flex-1 text-center bg-accent text-white font-bold py-3 rounded-xl text-sm hover:bg-accent-light transition-colors">
+          {path === '/bds-admission/' ? 'Explore BDS Colleges' : 'Check My Options'}
         </a>
       </div>
 
