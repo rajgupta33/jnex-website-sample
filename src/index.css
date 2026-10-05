@@ -412,9 +412,12 @@ header .nav-dropdown { max-height: calc(100dvh - 160px); overflow-y: auto; }
   .reference-table th, .reference-table td { padding: 12px 15px; }
 }
 /* Visual hierarchy: quiet mint accents support navy and gold. */
-#counselling { background: radial-gradient(ellipse at 75% 45%, #dff3e7, #f2faf5 35%, #f8fafc 75%); }
-#colleges { background: radial-gradient(ellipse at 0 20%, #e8f6ed, #f8fafc 55%); }
-#abroad { background: radial-gradient(ellipse at 90% 0, #e0f2e9, #f4f8f7 60%); }
+:root { --content-mint-gradient: radial-gradient(ellipse at 90% 0, #e0f2e9, #f4f8f7 60%); }
+/* Share the MBBS Abroad right-side shade across every page's light sections. */
+#main-content > section:not(#home):not(#contact):not(.page-intro):not(.bg-primary),
+#main-content > .bds-page > section:not(.bds-hero) {
+  background: var(--content-mint-gradient);
+}
 .hero-snapshot { box-shadow: 0 0 65px -20px #67bf9570; }
 .path-icon { display: grid; place-items: center; width: 84px; height: 84px; margin-bottom: 28px; border-radius: 22px; background: #f0f7f3; color: #173c33; transition: background .2s; }
 .path-visual-card { transition: transform .2s, box-shadow .2s; }
