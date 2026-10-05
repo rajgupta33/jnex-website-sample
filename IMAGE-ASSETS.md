@@ -8,6 +8,7 @@ All active images are served locally from `public/`. Keep only production assets
 | `favicon.png` | 64 ? 64 version of the supplied logo. |
 | `images/hero/slide-1?4-desktop.webp` | Current desktop hero artwork from supplied / approved visuals. |
 | `images/hero/slide-1-mobile.webp` | Current first-slide mobile artwork. |
+| `images/hero/bds-{desktop,mobile}.webp` | Exact landscape and portrait dental-campus artwork supplied in chat on 5 October 2026, converted to WebP at quality 88. Used by the BDS hero through a responsive picture element. |
 | `images/hero/slide-{2,3}-mobile-v2.webp` | Approved generated mobile artwork, based on the supplied desktop references and mobile image brief. |
 | `images/hero/slide-4-mobile-v3.webp` | Current slide 4 mobile artwork, composed for the 6:5 image band. |
 | `images/page-intros/*.webp` | Route-specific decorative backdrops made from approved artwork and supplied resource imagery. |

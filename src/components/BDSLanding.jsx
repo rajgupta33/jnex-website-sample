@@ -25,6 +25,10 @@ export default function BDSLanding() {
 
   return <div className="bds-page">
     <section className="bds-hero">
+      <picture className="bds-hero-media" aria-hidden="true">
+        <source media="(max-width: 700px)" srcSet="/images/hero/bds-mobile.webp" />
+        <img src="/images/hero/bds-desktop.webp" alt="" width="1983" height="793" fetchPriority="high" />
+      </picture>
       <div className="content-wrap">
         <nav className="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/medical-admissions/">Medical Admissions</a><span>/</span><span>BDS</span></nav>
         <div className="bds-hero-grid">
@@ -35,12 +39,17 @@ export default function BDSLanding() {
             <div className="bds-actions"><a className="bds-button" href="#bds-colleges">Explore BDS colleges <ArrowRight size={18} /></a><a className="bds-secondary" href={enquire('Personalised shortlist')}>Talk to a counsellor <ArrowUpRight size={17} /></a></div>
             <div className="bds-hero-note"><GraduationCap size={20} aria-hidden="true" /><span>Bachelor of Dental Surgery<br /><strong>College selection & admission guidance</strong></span></div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section className="bds-planning">
+      <div className="content-wrap">
           <aside className="bds-plan" aria-label="Your BDS admission plan">
             <div className="bds-plan-top"><span className="bds-symbol"><Smile size={30} strokeWidth={1.4} /></span><span>YOUR NEXT CHAPTER<br /><strong>Starts with a plan.</strong></span></div>
             <ol>{steps.map(([n, title, copy]) => <li key={n}><span>{n}</span><div><h2>{title}</h2><p>{copy}</p></div></li>)}</ol>
             <a href="#bds-colleges">Find your starting point <ArrowRight size={18} /></a>
           </aside>
-        </div>
         <div className="bds-stats"><div><strong>{colleges.length}</strong><span>College entries in our directory</span></div><div><strong>{groups.length}</strong><span>State & UT groups in the source</span></div><div><strong>One focus</strong><span>Your dental admission journey</span></div></div>
       </div>
     </section>
